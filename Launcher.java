@@ -1,5 +1,3 @@
-package petopia_2212;
-
 import javax.swing.SwingUtilities;
 
 

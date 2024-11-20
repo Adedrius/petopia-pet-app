@@ -63,30 +63,26 @@ public class mainMenu extends JFrame {
         add(infoPanel, BorderLayout.SOUTH);
 
         // Event listeners for buttons
-        startGameButton.addActionListener(e ->{
+        startGameButton.addActionListener(e -> {
             startGame StartGame = new startGame();
-            startGame.showWindow();
-
+            StartGame.showWindow();
         });
 
-        loadGameButton.addActionListener(e ->{
+        loadGameButton.addActionListener(e -> {
             loadGame loadGame = new loadGame();
             loadGame.showWindow();
-
         });
 
         tutorialButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Call the method to display tutorial or instructions
-                
             }
         });
 
-        parentalControlsButton.addActionListener(e ->{
+        parentalControlsButton.addActionListener(e -> {
             parentalControls parentalControls = new parentalControls();
             parentalControls.showWindow();
-            
         });
 
         exitButton.addActionListener(new ActionListener() {
@@ -97,12 +93,48 @@ public class mainMenu extends JFrame {
             }
         });
     }
+
+    // Splash Screen Implementation
+    public static void showSplashScreen(Runnable onComplete) {
+        JFrame splashScreen = new JFrame();
+        splashScreen.setUndecorated(true);
+        splashScreen.setSize(800, 600);
+        splashScreen.setLocationRelativeTo(null);
+
+        // Add image to the splash screen
+        JLabel splashImage = new JLabel(new ImageIcon("MainBefore.jpg"));
+        splashImage.setHorizontalAlignment(JLabel.CENTER);
+        splashScreen.add(splashImage);
+
+        // Set opacity control
+        splashScreen.setOpacity(1.0f);
+        splashScreen.setVisible(true);
+
+        Timer timer = new Timer(50, new ActionListener() {
+            float opacity = 1.0f;
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                opacity -= 0.02f;
+                if (opacity <= 0.0f) {
+                    splashScreen.dispose();
+                    ((Timer) e.getSource()).stop();
+                    onComplete.run(); // Launch the main menu
+                } else {
+                    splashScreen.setOpacity(opacity);
+                }
+            }
+        });
+
+        timer.start();
+    }
+
     // Main method to launch the main menu
     public static void main(String[] args) {
         // Create the main menu and make it visible
-        SwingUtilities.invokeLater(() -> {
-            mainMenu MainMenu = new mainMenu();
-            MainMenu.setVisible(true);
+        showSplashScreen(() -> {
+            mainMenu mainMenu = new mainMenu();
+            mainMenu.setVisible(true);
         });
     }
 }

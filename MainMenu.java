@@ -102,7 +102,7 @@ public class mainMenu extends JFrame {
         splashScreen.setLocationRelativeTo(null);
 
         // Add image to the splash screen
-        JLabel splashImage = new JLabel(new ImageIcon("MainBefore.jpg"));
+        JLabel splashImage = new JLabel(new ImageIcon("images/title.png"));
         splashImage.setHorizontalAlignment(JLabel.CENTER);
         splashScreen.add(splashImage);
 

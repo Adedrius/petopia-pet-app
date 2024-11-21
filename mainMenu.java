@@ -73,11 +73,9 @@ public class mainMenu extends JFrame {
             loadGame.showWindow();
         });
 
-        tutorialButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Call the method to display tutorial or instructions
-            }
+        tutorialButton.addActionListener( e -> {
+            Tutorial tutorial = new Tutorial();
+            tutorial.showWindow();
         });
 
         parentalControlsButton.addActionListener(e -> {

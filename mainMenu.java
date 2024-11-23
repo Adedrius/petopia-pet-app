@@ -79,7 +79,7 @@ public class mainMenu extends JFrame {
         });
 
         parentalControlsButton.addActionListener(e -> {
-            parentalControls parentalControls = new parentalControls();
+            parentalControlsLogin parentalControls = new parentalControlsLogin();
             parentalControls.showWindow();
         });
 

@@ -12,16 +12,15 @@ public class Tutorial extends JFrame {
         frame.setLayout(null); 
 
         
-        JTextArea Title = new JTextArea("Game Instructions Video");
+        JLabel Title = new JLabel("Game Instructions Video");
         Title.setBounds(130, 25, 225, 30); // x, y, width, height
         Title.setFont(new Font("Arial", Font.PLAIN, 20));
         Title.setOpaque(false);
         Title.setBorder(null);
-        Title.setEditable(false); // Make the text area non-editable
         frame.add(Title); 
 
         
-        JButton mainMenu = new JButton("Back to Main Menu");
+        JButton mainMenu = new JButton("Main Menu");
         mainMenu.setBounds(165, 290, 150, 30); // x, y, width, height
         frame.add(mainMenu); 
 

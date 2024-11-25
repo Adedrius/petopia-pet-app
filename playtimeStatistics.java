@@ -5,7 +5,7 @@ import javax.swing.*;
 public class playtimeStatistics {
   public static void showWindow() {
     // Create a new JFrame
-    JFrame frame = new JFrame("Parental Controls Menu");
+    JFrame frame = new JFrame("Playtime Statistics");
     // Set the size of the frame
     frame.setSize(500, 400); // Width: 600px, Height: 600px
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

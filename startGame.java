@@ -40,13 +40,10 @@ public class startGame extends JFrame {
       frame.add(pet2Name);
       frame.add(pet3Name);
 
-
-
       // PET IMAGE 1 SETUP
-      ImageIcon pet1Icon = new ImageIcon("group34/sprites/cat_normal.png");
+      ImageIcon pet1Icon = new ImageIcon("sprites/cat_normal.png");
       Image scaledPet1 = pet1Icon.getImage().getScaledInstance(225, 225, Image.SCALE_SMOOTH);
       ImageIcon scaledPet1Icon = new ImageIcon(scaledPet1);
-
 
       // Create buttons with images
       JButton pet1Button = new JButton(scaledPet1Icon);
@@ -83,12 +80,10 @@ public class startGame extends JFrame {
 
       frame.add(pet1Button);
 
-
       // PET IMAGE 2 SETUP
-      ImageIcon pet2Icon = new ImageIcon("group34/sprites/dog_normal.png");
+      ImageIcon pet2Icon = new ImageIcon("sprites/dog_normal.png");
       Image scaledPet2 = pet2Icon.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
       ImageIcon scaledPet2Icon = new ImageIcon(scaledPet2);
-
 
       // Create buttons with images
       JButton pet2Button = new JButton(scaledPet2Icon);
@@ -125,13 +120,12 @@ public class startGame extends JFrame {
 
       frame.add(pet2Button);
 
-
-      ImageIcon pet3Icon = new ImageIcon("group34/sprites/sheep_normal.png");
+      // PET 3 IMAGE SETUP
+      ImageIcon pet3Icon = new ImageIcon("sprites/sheep_normal.png");
       Image scaledPet3 = pet3Icon.getImage().getScaledInstance(225, 225, Image.SCALE_SMOOTH);
       ImageIcon scaledPet3Icon = new ImageIcon(scaledPet3);
 
-
-      // PET 3 IMAGE SETUP
+      // PET 3 BUTTON
       JButton pet3Button = new JButton(scaledPet3Icon);
       pet3Button.setBorderPainted(false);
       pet3Button.setFocusPainted(false);
@@ -166,14 +160,29 @@ public class startGame extends JFrame {
 
       frame.add(pet3Button);
 
+      // Set action listeners for the buttons
+      pet1Button.addActionListener(e -> {
+          // Open the pet window for cat
+          pet petWindow = new pet("cat");
+          petWindow.setVisible(true);
+          frame.dispose(); // Close the pet selection window
+      });
 
-      // Set action listeners for the buttons (for future functionality)
-      pet1Button.addActionListener(e -> System.out.println("Pet 1 selected"));
-      pet2Button.addActionListener(e -> System.out.println("Pet 2 selected"));
-      pet3Button.addActionListener(e -> System.out.println("Pet 3 selected"));
+      pet2Button.addActionListener(e -> {
+          // Open the pet window for dog
+          pet petWindow = new pet("dog");
+          petWindow.setVisible(true);
+          frame.dispose(); // Close the pet selection window
+      });
+
+      pet3Button.addActionListener(e -> {
+          // Open the pet window for sheep
+          pet petWindow = new pet("sheep");
+          petWindow.setVisible(true);
+          frame.dispose(); // Close the pet selection window
+      });
 
       frame.setVisible(true);
-
   }
 
     // Method to show the window

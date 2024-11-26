@@ -1,14 +1,15 @@
 import java.awt.*;
 import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class childLimitations {
   public static void showWindow() {
     // Create a new JFrame
     JFrame frame = new JFrame("Parental Controls Menu");
     // Set the size of the frame
-    frame.setSize(500, 400); // Width: 600px, Height: 600px
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setLocationRelativeTo(null);
+    frame.setSize(500, 400); // Width: 500px, Height: 400px
+    frame.setLocationRelativeTo(null); // Center the frame on the screen
     frame.setLayout(null);
 
     JLabel pageTitle = new JLabel("Parental Change Options");
@@ -56,14 +57,29 @@ public class childLimitations {
     parentalChanges.setHorizontalAlignment(SwingConstants.CENTER);
     frame.add(parentalChanges);
 
-    // Set default close operation (exit the application when the window is closed)
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    // Action listener for Back to Parental Controls button
+    parentalChanges.addActionListener(e -> {
+      // Dispose of the current window (childLimitations)
+      frame.dispose();
+      // Show the parentalControlsMenu window
+      parentalControlsMenu.showWindow();
+    });
+
+    // Override the default close operation (close only the window, not the entire application)
+    frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+
+    // Add WindowListener to handle the close event
+    frame.addWindowListener(new WindowAdapter() {
+      @Override
+      public void windowClosing(WindowEvent e) {
+        // Dispose of the current window and go back to the parentalControlsMenu
+        frame.dispose();
+        parentalControlsMenu.showWindow();
+      }
+    });
 
     // Set the frame's visibility
     frame.setVisible(true);
-
-    // Optionally, center the frame on the screen
-    frame.setLocationRelativeTo(null);
   }
 
   public static void main(String[] args) {

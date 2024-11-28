@@ -123,7 +123,7 @@ public class pet extends JFrame {
         try {
             backgroundImage = ImageIO.read(new File("images/background.png"));
            
-            petImage = ImageIO.read(new File("sprites/" + petType + "_playing.png"));
+            petImage = ImageIO.read(new File("sprites/" + petType + "_sleeping.png"));
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error loading image.");

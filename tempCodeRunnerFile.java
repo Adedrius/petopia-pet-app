@@ -78,7 +78,7 @@ public class pet extends JFrame {
     // Method to update stats over time
     private void updateStats() {
         // Decrease stats if they are above 0
-        if (health > 0) health -= 2;
+        if (health > 0) health -= 25;
         if (happiness > 0) happiness -= 1;
         if (fullness > 0) fullness -= 3;
         if (sleep > 0) sleep -= 2;
@@ -122,8 +122,10 @@ public class pet extends JFrame {
         happiness = Math.min(happiness + 10, 100);  // Increase happiness but don't exceed 100
         try {
             backgroundImage = ImageIO.read(new File("images/background.png"));
-           
-            petImage = ImageIO.read(new File("sprites/" + petType + "_sleeping.png"));
+           if (health <= 0){
+            petImage = ImageIO.read(new File("sprites/" + petType + "_dead.png"));
+           }
+            petImage = ImageIO.read(new File("sprites/" + petType + "_playing.png"));
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error loading image.");

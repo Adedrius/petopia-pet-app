@@ -122,7 +122,6 @@ public class pet extends JFrame {
         happiness = Math.min(happiness + 10, 100);  // Increase happiness but don't exceed 100
         try {
             backgroundImage = ImageIO.read(new File("images/background.png"));
-           
             petImage = ImageIO.read(new File("sprites/" + petType + "_playing.png"));
         } catch (Exception e) {
             e.printStackTrace();
@@ -147,11 +146,11 @@ public class pet extends JFrame {
 
     @Override
     public void paint(Graphics g) {
-        super.paint(g);
-
+        add(playButton);
         // Ensure we don't clear the whole screen on repaint
         if (backgroundImage != null) {
             g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), null);
+           
         }
         if (petImage != null) {
             int x = (getWidth() - petImage.getWidth()) / 2;

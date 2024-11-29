@@ -1,192 +1,131 @@
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.border.LineBorder;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 
 public class startGame extends JFrame {
 
-  // Constructor for the StartGame screen
-  public static void showWindow() {
+    // Constructor for the StartGame screen
+    public static void showWindow() {
+        JFrame frame = new JFrame("Choose Your Pet");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(800, 600);
+        frame.setLocationRelativeTo(null);
+        frame.setLayout(null);
 
-      JFrame frame = new JFrame("Choose Your Pet");
-      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      frame.setSize(800, 600);
-      frame.setLocationRelativeTo(null);
-      frame.setLayout(null);
+        // Title label
+        JLabel pageTitle = new JLabel("Select Your Pet");
+        pageTitle.setBounds(275, 45, 225, 30); // x, y, width, height
+        pageTitle.setFont(new Font("Arial", Font.BOLD, 30));
+        pageTitle.setOpaque(false);
+        pageTitle.setBorder(null);
+        frame.add(pageTitle);
 
-      JLabel pageTitle = new JLabel("Select Your Pet");
-      pageTitle.setBounds(275, 45, 225, 30); // x, y, width, height
-      pageTitle.setFont(new Font("Arial", Font.BOLD, 30));
-      pageTitle.setOpaque(false);
-      pageTitle.setBorder(null);
-      frame.add(pageTitle);
+        // Label for entering pet name
+        JLabel nameLabel = new JLabel("Enter your pet's name:");
+        nameLabel.setBounds(275, 100, 250, 30); // x, y, width, height
+        nameLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+        frame.add(nameLabel);
 
+        // Text field for pet's name
+        JTextField petNameField = new JTextField();
+        petNameField.setBounds(275, 130, 250, 30); // x, y, width, height
+        frame.add(petNameField);
 
-      // Create labels for pet names
-      JLabel pet1Name = new JLabel("Pet 1", JLabel.CENTER);
-      pet1Name.setFont(new Font("Arial", Font.BOLD, 16));
-      pet1Name.setBounds(90, 145, 225, 30); // x, y, width, height
+        // Button to confirm pet name
+        JButton confirmButton = new JButton("Confirm Name");
+        confirmButton.setBounds(275, 170, 250, 30); // x, y, width, height
+        frame.add(confirmButton);
 
-      JLabel pet2Name = new JLabel("Pet 2", JLabel.CENTER);
-      pet2Name.setFont(new Font("Arial", Font.BOLD, 16));
-      pet2Name.setBounds(275, 145, 225, 30); // x, y, width, height
+        // Disable pet selection buttons initially
+        JButton pet1Button = createPetButton("cat_normal.png", 95, 175);
+        JButton pet2Button = createPetButton("dog_normal.png", 285, 175);
+        JButton pet3Button = createPetButton("sheep_normal.png", 475, 175);
 
-      JLabel pet3Name = new JLabel("Pet 3", JLabel.CENTER);
-      pet3Name.setFont(new Font("Arial", Font.BOLD, 16));
-      pet3Name.setBounds(470, 145, 225, 30); // x, y, width, height
+        pet1Button.setEnabled(false);
+        pet2Button.setEnabled(false);
+        pet3Button.setEnabled(false);
 
-      frame.add(pet1Name);
-      frame.add(pet2Name);
-      frame.add(pet3Name);
+        frame.add(pet1Button);
+        frame.add(pet2Button);
+        frame.add(pet3Button);
 
-      // PET IMAGE 1 SETUP
-      ImageIcon pet1Icon = new ImageIcon("sprites/cat_normal.png");
-      Image scaledPet1 = pet1Icon.getImage().getScaledInstance(225, 225, Image.SCALE_SMOOTH);
-      ImageIcon scaledPet1Icon = new ImageIcon(scaledPet1);
+        // When the confirm button is clicked, enable pet selection buttons
+        confirmButton.addActionListener(e -> {
+            String petName = petNameField.getText().trim();
+            if (!petName.isEmpty()) {
+                // Enable pet selection buttons
+                pet1Button.setEnabled(true);
+                pet2Button.setEnabled(true);
+                pet3Button.setEnabled(true);
 
-      // Create buttons with images
-      JButton pet1Button = new JButton(scaledPet1Icon);
-      pet1Button.setBorderPainted(false);
-      pet1Button.setFocusPainted(false);
-      pet1Button.setContentAreaFilled(false);
+                // Optionally, show a confirmation message
+                JOptionPane.showMessageDialog(frame, "Your pet's name is: " + petName);
+            } else {
+                // If no name is entered, show an error message
+                JOptionPane.showMessageDialog(frame, "Please enter a valid pet name.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        });
 
-      pet1Button.setBounds(95, 175, 200, 200);
+        // Set action listeners for the pet buttons
+        pet1Button.addActionListener(e -> {
+            String petName = petNameField.getText().trim();
+            pet petWindow = new pet("cat", petName); // Pass name to pet window
+            petWindow.setVisible(true);
+            frame.dispose(); // Close the pet selection window
+        });
 
-      pet1Button.addMouseListener(new MouseAdapter() {
-        @Override
-        public void mouseEntered(MouseEvent e) {
-            // Add a border
-            pet1Button.setBorder(new LineBorder(Color.BLUE, 2));
+        pet2Button.addActionListener(e -> {
+            String petName = petNameField.getText().trim();
+            pet petWindow = new pet("dog", petName); // Pass name to pet window
+            petWindow.setVisible(true);
+            frame.dispose(); // Close the pet selection window
+        });
 
-            // Scale up the icon slightly
-            Image scaledImage = pet1Icon.getImage().getScaledInstance(
-                    (int) (250 * 1.1), // 10% larger width
-                    (int) (250 * 1.1), // 10% larger height
-                    Image.SCALE_SMOOTH
-            );
-            pet1Button.setIcon(new ImageIcon(scaledImage));
-        }
+        pet3Button.addActionListener(e -> {
+            String petName = petNameField.getText().trim();
+            pet petWindow = new pet("sheep", petName); // Pass name to pet window
+            petWindow.setVisible(true);
+            frame.dispose(); // Close the pet selection window
+        });
 
-        @Override
-        public void mouseExited(MouseEvent e) {
-            // Remove the border
-            pet1Button.setBorder(null);
+        frame.setVisible(true);
+    }
 
-            // Reset the icon to its original size
-            pet1Button.setIcon(pet1Icon);
-        }
-      });
+    // Method to create pet selection buttons with images
+    private static JButton createPetButton(String petImagePath, int x, int y) {
+        ImageIcon petIcon = new ImageIcon("sprites/" + petImagePath);
+        Image scaledPet = petIcon.getImage().getScaledInstance(225, 225, Image.SCALE_SMOOTH);
+        ImageIcon scaledPetIcon = new ImageIcon(scaledPet);
 
-      frame.add(pet1Button);
+        JButton petButton = new JButton(scaledPetIcon);
+        petButton.setBorderPainted(false);
+        petButton.setFocusPainted(false);
+        petButton.setContentAreaFilled(false);
+        petButton.setBounds(x, y, 200, 200);
 
-      // PET IMAGE 2 SETUP
-      ImageIcon pet2Icon = new ImageIcon("sprites/dog_normal.png");
-      Image scaledPet2 = pet2Icon.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
-      ImageIcon scaledPet2Icon = new ImageIcon(scaledPet2);
+        petButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                petButton.setBorder(new LineBorder(Color.BLUE, 2));
+                Image scaledImage = petIcon.getImage().getScaledInstance(
+                        (int) (250 * 1.1), (int) (250 * 1.1), Image.SCALE_SMOOTH);
+                petButton.setIcon(new ImageIcon(scaledImage));
+            }
 
-      // Create buttons with images
-      JButton pet2Button = new JButton(scaledPet2Icon);
-      pet2Button.setBorderPainted(false);
-      pet2Button.setFocusPainted(false);
-      pet2Button.setContentAreaFilled(false);
+            @Override
+            public void mouseExited(MouseEvent e) {
+                petButton.setBorder(null);
+                petButton.setIcon(petIcon);
+            }
+        });
 
-      pet2Button.setBounds(285, 175, 200, 200);
+        return petButton;
+    }
 
-      pet2Button.addMouseListener(new MouseAdapter() {
-        @Override
-        public void mouseEntered(MouseEvent e) {
-            // Add a border
-            pet2Button.setBorder(new LineBorder(Color.BLUE, 2));
-
-            // Scale up the icon slightly
-            Image scaledImage = pet2Icon.getImage().getScaledInstance(
-                    (int) (250 * 1.1), // 10% larger width
-                    (int) (250 * 1.1), // 10% larger height
-                    Image.SCALE_SMOOTH
-            );
-            pet2Button.setIcon(new ImageIcon(scaledImage));
-        }
-
-        @Override
-        public void mouseExited(MouseEvent e) {
-            // Remove the border
-            pet2Button.setBorder(null);
-
-            // Reset the icon to its original size
-            pet2Button.setIcon(pet2Icon);
-        }
-      });
-
-      frame.add(pet2Button);
-
-      // PET 3 IMAGE SETUP
-      ImageIcon pet3Icon = new ImageIcon("sprites/sheep_normal.png");
-      Image scaledPet3 = pet3Icon.getImage().getScaledInstance(225, 225, Image.SCALE_SMOOTH);
-      ImageIcon scaledPet3Icon = new ImageIcon(scaledPet3);
-
-      // PET 3 BUTTON
-      JButton pet3Button = new JButton(scaledPet3Icon);
-      pet3Button.setBorderPainted(false);
-      pet3Button.setFocusPainted(false);
-      pet3Button.setContentAreaFilled(false);
-
-      pet3Button.setBounds(475, 175, 200, 200);
-
-      pet3Button.addMouseListener(new MouseAdapter() {
-        @Override
-        public void mouseEntered(MouseEvent e) {
-            // Add a border
-            pet3Button.setBorder(new LineBorder(Color.BLUE, 2));
-
-            // Scale up the icon slightly
-            Image scaledImage = pet3Icon.getImage().getScaledInstance(
-                    (int) (225 * 1.1), // 10% larger width
-                    (int) (225 * 1.1), // 10% larger height
-                    Image.SCALE_SMOOTH
-            );
-            pet3Button.setIcon(new ImageIcon(scaledImage));
-        }
-
-        @Override
-        public void mouseExited(MouseEvent e) {
-            // Remove the border
-            pet3Button.setBorder(null);
-
-            // Reset the icon to its original size
-            pet3Button.setIcon(pet3Icon);
-        }
-      });
-
-      frame.add(pet3Button);
-
-      // Set action listeners for the buttons
-      pet1Button.addActionListener(e -> {
-          // Open the pet window for cat
-          pet petWindow = new pet("cat");
-          petWindow.setVisible(true);
-          frame.dispose(); // Close the pet selection window
-      });
-
-      pet2Button.addActionListener(e -> {
-          // Open the pet window for dog
-          pet petWindow = new pet("dog");
-          petWindow.setVisible(true);
-          frame.dispose(); // Close the pet selection window
-      });
-
-      pet3Button.addActionListener(e -> {
-          // Open the pet window for sheep
-          pet petWindow = new pet("sheep");
-          petWindow.setVisible(true);
-          frame.dispose(); // Close the pet selection window
-      });
-
-      frame.setVisible(true);
-  }
-
-    // Method to show the window
+    // Main method to launch the start screen
     public static void main(String[] args) {
-      showWindow();
+        showWindow();
     }
 }
+

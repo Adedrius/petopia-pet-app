@@ -6,6 +6,7 @@ import javax.imageio.ImageIO;
 
 public class pet extends JFrame {
     private String petType;
+    private String petName;
     private BufferedImage petImage;
     private BufferedImage backgroundImage;
 
@@ -22,7 +23,7 @@ public class pet extends JFrame {
     private JButton playButton;
     private JButton vetButton;
 
-    public pet(String petType) {
+    public pet(String petType, String petName) {
         this.petType = petType;
 
         // Set up window properties
@@ -157,23 +158,30 @@ public class pet extends JFrame {
             int y = (getHeight() - petImage.getHeight()) / 2;
             g.drawImage(petImage, x, y, null);
         }
-
+    
+        // Display the pet's name above the image
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("Arial", Font.BOLD, 24));
+        g.drawString(petName, (getWidth() - g.getFontMetrics().stringWidth(petName)) / 2, 100);
+    
         // Display the pet's stats along the bottom of the screen
         g.setColor(Color.WHITE);
         g.setFont(new Font("Arial", Font.PLAIN, 20));
-
+    
         int yPos = getHeight() - 40;  // Start position for stats text (a bit above the bottom)
-
+    
         // Display each stat one after the other
         g.drawString("Health: " + health, 20, yPos);
         g.drawString("Happiness: " + happiness, 220, yPos);
         g.drawString("Fullness: " + fullness, 420, yPos);
         g.drawString("Sleep: " + sleep, 620, yPos);
-    }
+    }    
 
     public static void main(String[] args) {
         // Display the pet screen for a "cat" as an example
-        pet pet = new pet("cat");
+        pet pet = new pet("cat", " ");
         pet.setVisible(true);
     }
 }
+
+

@@ -1,182 +1,138 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import javax.imageio.ImageIO;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class pet extends JFrame {
-    private String petType;
-    private BufferedImage petImage;
-    private BufferedImage backgroundImage;
+public class mainMenu extends JFrame {
 
-    private int health = 100;
-    private int happiness = 100;
-    private int fullness = 100;
-    private int sleep = 100;
+    // Constructor to set up the main menu window
+    public mainMenu() {
+        // Set the window title
+        setTitle("Petopia - Virtual Pet Game");
 
-    private Timer timer;  // Timer to decrease stats over time
-
-    // Declare buttons
-    private JButton feedButton;
-    private JButton sleepButton;
-    private JButton playButton;
-    private JButton vetButton;
-
-    public pet(String petType) {
-        this.petType = petType;
-
-        // Set up window properties
-        setTitle("Your Pet in Petopia");
-        setSize(800, 600);
-        setLocationRelativeTo(null);
+        // Set the default close operation
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(null);  // Use null layout for absolute positioning
 
-        // Load images
-        loadImages();
+        // Set the window size
+        setSize(800, 600);
 
-        // Create and add the feed button
-        feedButton = new JButton("Feed Pet");
-        feedButton.setBounds(650, 20, 120, 40);  // Set position and size
-        feedButton.addActionListener(e -> feedPet());  // Add action listener for feeding pet
-        add(feedButton);
+        // Center the window on the screen
+        setLocationRelativeTo(null);
 
-        // Create and add the sleep button
-        sleepButton = new JButton("Put pet to sleep");
-        sleepButton.setBounds(20, 20, 150, 40);  // Position along the top (x: 20px)
-        sleepButton.addActionListener(e -> putToSleep());  // Add action listener for sleep
-        add(sleepButton);
+        // Set the layout for the window
+        setLayout(new BorderLayout());
 
-        // Create and add the play button
-        playButton = new JButton("Play with Pet");
-        playButton.setBounds(180, 20, 150, 40);  // Position along the top (x: 180px)
-        playButton.addActionListener(e -> playWithPet());  // Add action listener for play
-        add(playButton);
+        // Create the title label
+        JLabel titleLabel = new JLabel("Welcome to Petopia!", JLabel.CENTER);
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 30));
+        add(titleLabel, BorderLayout.NORTH);
 
-        // Create and add the vet button
-        vetButton = new JButton("Bring pet to vet");
-        vetButton.setBounds(340, 20, 150, 40);  // Position along the top (x: 340px)
-        vetButton.addActionListener(e -> bringToVet());  // Add action listener for vet
-        add(vetButton);
+        // Create a panel for the buttons
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(5, 1, 10, 10));
 
-        // Create a timer that decreases the stats over time
-        timer = new Timer(5000, e -> updateStats());  // Decrease stats every 5 seconds
+        // Create buttons for each menu option
+        JButton startGameButton = new JButton("Start New Game");
+        JButton loadGameButton = new JButton("Load Game");
+        JButton tutorialButton = new JButton("Tutorial / Instructions");
+        JButton parentalControlsButton = new JButton("Parental Controls");
+        JButton exitButton = new JButton("Exit");
+
+        // Add buttons to the panel
+        buttonPanel.add(startGameButton);
+        buttonPanel.add(loadGameButton);
+        buttonPanel.add(tutorialButton);
+        buttonPanel.add(parentalControlsButton);
+        buttonPanel.add(exitButton);
+
+        // Add the button panel to the center of the window
+        add(buttonPanel, BorderLayout.CENTER);
+
+        // Create a panel for developer information
+        JPanel infoPanel = new JPanel(new GridLayout(3, 1));
+        JLabel teamLabel = new JLabel("Developers: Team 34", JLabel.CENTER);
+        JLabel namesLabel = new JLabel("Thevindu, Isabella, Keith, Hassan, Ade", JLabel.CENTER);
+        JLabel termLabel = new JLabel("Fall 2024 - CS2212 at Western University", JLabel.CENTER);
+
+        // Add info to the panel
+        infoPanel.add(teamLabel);
+        infoPanel.add(namesLabel);
+        infoPanel.add(termLabel);
+
+        // Add info panel to the bottom of the window
+        add(infoPanel, BorderLayout.SOUTH);
+
+        // Event listeners for buttons
+        startGameButton.addActionListener(e -> {
+            startGame StartGame = new startGame();
+            StartGame.showWindow();
+        });
+
+        loadGameButton.addActionListener(e -> {
+            loadGame loadGame = new loadGame();
+            loadGame.showWindow();
+        });
+
+        tutorialButton.addActionListener( e -> {
+            Tutorial tutorial = new Tutorial();
+            tutorial.showWindow();
+        });
+
+        parentalControlsButton.addActionListener(e -> {
+            parentalControlsLogin parentalControls = new parentalControlsLogin();
+            parentalControls.showWindow();
+        });
+
+        exitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Exit the application
+                System.exit(0);
+            }
+        });
+    }
+
+    // Splash Screen Implementation
+    public static void showSplashScreen(Runnable onComplete) {
+        JFrame splashScreen = new JFrame();
+        splashScreen.setUndecorated(true);
+        splashScreen.setSize(800, 600);
+        splashScreen.setLocationRelativeTo(null);
+
+        // Add image to the splash screen
+        JLabel splashImage = new JLabel(new ImageIcon("images/title.png"));
+        splashImage.setHorizontalAlignment(JLabel.CENTER);
+        splashScreen.add(splashImage);
+
+        // Set opacity control
+        splashScreen.setOpacity(1.0f);
+        splashScreen.setVisible(true);
+
+        Timer timer = new Timer(50, new ActionListener() {
+            float opacity = 1.0f;
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                opacity -= 0.02f;
+                if (opacity <= 0.0f) {
+                    splashScreen.dispose();
+                    ((Timer) e.getSource()).stop();
+                    onComplete.run(); // Launch the main menu
+                } else {
+                    splashScreen.setOpacity(opacity);
+                }
+            }
+        });
+
         timer.start();
     }
 
-    private void loadImages() {
-        try {
-            backgroundImage = ImageIO.read(new File("images/background.png"));
-           
-            petImage = ImageIO.read(new File("sprites/" + petType + "_normal.png"));
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Error loading image.");
-        }
-    }
-
-    // Method to update stats over time
-    private void updateStats() {
-        // Decrease stats if they are above 0
-        if (health > 0) health -= 25;
-        if (happiness > 0) happiness -= 1;
-        if (fullness > 0) fullness -= 3;
-        if (sleep > 0) sleep -= 2;
-
-        // Trigger a repaint to update the pet stats
-        repaint();
-    }
-
-    // Method to feed the pet
-    private void feedPet() {
-        // Increase fullness when pet is fed (but don't exceed 100)
-        fullness = Math.min(fullness + 20, 100);
-        try {
-            backgroundImage = ImageIO.read(new File("images/background.png"));
-           
-            petImage = ImageIO.read(new File("sprites/" + petType + "_eating.png"));
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Error loading image.");
-        }
-        // Trigger a repaint to update the UI after feeding
-        repaint();
-    }
-
-    // Method to put pet to sleep (increase health by 10)
-    private void putToSleep() {
-        health = Math.min(health + 10, 100);  // Increase health but don't exceed 100
-        try {
-            backgroundImage = ImageIO.read(new File("images/background.png"));
-           
-            petImage = ImageIO.read(new File("sprites/" + petType + "_sleeping.png"));
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Error loading image.");
-        }
-        repaint();
-    }
-
-    // Method to play with pet (increase happiness by 10)
-    private void playWithPet() {
-        happiness = Math.min(happiness + 10, 100);  // Increase happiness but don't exceed 100
-        try {
-            backgroundImage = ImageIO.read(new File("images/background.png"));
-           if (health <= 0){
-            petImage = ImageIO.read(new File("sprites/" + petType + "_dead.png"));
-           }
-            petImage = ImageIO.read(new File("sprites/" + petType + "_playing.png"));
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Error loading image.");
-        }
-        repaint();
-    }
-
-    // Method to bring pet to vet (increase health by 20)
-    private void bringToVet() {
-        health = Math.min(health + 20, 100);  // Increase health but don't exceed 100
-        try {
-            backgroundImage = ImageIO.read(new File("images/background.png"));
-           
-            petImage = ImageIO.read(new File("sprites/" + petType + "_sad.png"));
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Error loading image.");
-        }
-        repaint();
-    }
-
-    @Override
-    public void paint(Graphics g) {
-        super.paint(g);
-
-        // Ensure we don't clear the whole screen on repaint
-        if (backgroundImage != null) {
-            g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), null);
-        }
-        if (petImage != null) {
-            int x = (getWidth() - petImage.getWidth()) / 2;
-            int y = (getHeight() - petImage.getHeight()) / 2;
-            g.drawImage(petImage, x, y, null);
-        }
-
-        // Display the pet's stats along the bottom of the screen
-        g.setColor(Color.WHITE);
-        g.setFont(new Font("Arial", Font.PLAIN, 20));
-
-        int yPos = getHeight() - 40;  // Start position for stats text (a bit above the bottom)
-
-        // Display each stat one after the other
-        g.drawString("Health: " + health, 20, yPos);
-        g.drawString("Happiness: " + happiness, 220, yPos);
-        g.drawString("Fullness: " + fullness, 420, yPos);
-        g.drawString("Sleep: " + sleep, 620, yPos);
-    }
-
+    // Main method to launch the main menu
     public static void main(String[] args) {
-        // Display the pet screen for a "cat" as an example
-        pet pet = new pet("cat");
-        pet.setVisible(true);
+        // Create the main menu and make it visible
+        showSplashScreen(() -> {
+            mainMenu mainMenu = new mainMenu();
+            mainMenu.setVisible(true);
+        });
     }
 }

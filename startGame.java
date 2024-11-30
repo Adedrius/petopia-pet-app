@@ -92,6 +92,8 @@ public class startGame extends JFrame {
         frame.setVisible(true);
     }
 
+   
+
     // Method to create pet selection buttons with images
     private static JButton createPetButton(String petImagePath, int x, int y) {
         ImageIcon petIcon = new ImageIcon("sprites/" + petImagePath);
@@ -122,6 +124,7 @@ public class startGame extends JFrame {
 
         return petButton;
     }
+    
 
     // Main method to launch the start screen
     public static void main(String[] args) {

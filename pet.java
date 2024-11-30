@@ -29,6 +29,7 @@ public class pet extends JFrame {
         private JButton playButton;
         private JButton vetButton;
         private JButton gameOverButton;
+        private JButton saveGameButton;
     
         public pet(String petType, String petName) {
             pet.petType = petType;
@@ -48,10 +49,17 @@ public class pet extends JFrame {
             // Load images
             loadImages();
             // Create and add the feed button
-            if (isAlive && isAwake ){ //can only fully interact with pet when alive and awake
+            if (isAlive){ //can only fully interact with pet when alive and awake
+                saveGameButton = new JButton("Save Game");
+                saveGameButton.setBounds(640, 20, 120, 40);  // Set position and size
+                saveGameButton.addActionListener(e -> 
+                saveGame.showWindow()
+                );  // Add action listener for feeding pet
+                add(saveGameButton);
+                if (isAwake){
         if (isHappy){ //can only feet, sleep and take pet to vet when pet is happy
                 feedButton = new JButton("Feed Pet");
-        feedButton.setBounds(650, 20, 120, 40);  // Set position and size
+        feedButton.setBounds(500, 20, 120, 40);  // Set position and size
         feedButton.addActionListener(e -> feedPet());  // Add action listener for feeding pet
         add(feedButton);
 
@@ -66,14 +74,15 @@ public class pet extends JFrame {
         vetButton.addActionListener(e -> bringToVet());  // Add action listener for vet
         add(vetButton);
         }
-        else{ //only playing allowed when pet is unhappy
+         //only playing allowed when pet is unhappy
             // Create and add the play button
            playButton = new JButton("Play with Pet");
            playButton.setBounds(180, 20, 150, 40);  // Position along the top (x: 180px)
            playButton.addActionListener(e -> playWithPet());  // Add action listener for play
            add(playButton);
+        
         }
-        }
+    }
     
             
             // Create a timer that decreases the stats over time
@@ -210,8 +219,23 @@ public class pet extends JFrame {
         super.paint(g);
     
         // Ensure we don't clear the whole screen on repaint
-        if (backgroundImage != null) {
-            g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), null);
+        if (backgroundImage != null) {    
+            // Create a Graphics2D object for drawing
+            Graphics2D g2d = (Graphics2D) g;
+        
+            // Create a semi-transparent background image with 50% opacity
+            BufferedImage semiTransparentBackground = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
+            Graphics2D bgGraphics = semiTransparentBackground.createGraphics();
+            
+            // Set the alpha transparency for the background (50% opacity)
+            bgGraphics.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
+            
+            // Draw the background image into the semi-transparent image
+            bgGraphics.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), null);
+            bgGraphics.dispose();
+        
+            // Draw the semi-transparent background image to the panel
+            g2d.drawImage(semiTransparentBackground, 0, 0, null);
         }
         
         if (petImage != null) {

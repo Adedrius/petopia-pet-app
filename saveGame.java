@@ -1,5 +1,10 @@
 import java.awt.*;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.*;
+import java.io.BufferedWriter;
 
 public class saveGame {
   public static void showWindow() {
@@ -28,20 +33,48 @@ public class saveGame {
     JButton saveSlot1 = new JButton("Save Slot 1");
     saveSlot1.setBounds(195, 100, 100, 60); // x, y, width, height
     frame.add(saveSlot1);
+    saveSlot1.addActionListener(e -> {
+      try {
+        savePlayerData("1");
+      } catch (Exception e1) {
+        // TODO Auto-generated catch block
+        e1.printStackTrace();
+      }
+    }); // Save game to save slot 1
 
     JButton saveSlot2 = new JButton("Save Slot 2");
     saveSlot2.setBounds(195, 175, 100, 60); // x, y, width, height
     frame.add(saveSlot2);
+    saveSlot2.addActionListener(e -> {
+      try {
+        savePlayerData("2");
+      } catch (Exception e1) {
+        // TODO Auto-generated catch block
+        e1.printStackTrace();
+      }
+    }); // Save game to save slot 2
 
     JButton saveSlot3 = new JButton("Save Slot 3");
     saveSlot3.setBounds(195, 250, 100, 60); // x, y, width, height
     frame.add(saveSlot3);
+    saveSlot3.addActionListener(e -> {
+      try {
+        savePlayerData("3");
+      } catch (Exception e1) {
+        // TODO Auto-generated catch block
+        e1.printStackTrace();
+      }
+    }); // Save game to save slot 3
+
 
     
 
-    JButton mainMenu = new JButton("<-- Back");
-    mainMenu.setBounds(30, 305, 100, 30); // x, y, width, height
-    frame.add(mainMenu);
+    JButton backToGame = new JButton("<-- Back");
+    backToGame.setBounds(30, 305, 100, 30); // x, y, width, height
+    frame.add(backToGame);
+    backToGame.addActionListener(e -> 
+    frame.dispose()); // Close the frame when "Main Menu" is clicked
+
 
     // Set default close operation (exit the application when the window is closed)
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,7 +85,24 @@ public class saveGame {
     // Optionally, center the frame on the screen
     frame.setLocationRelativeTo(null);
   }
+  public static void savePlayerData(String saveSlot ) throws Exception {
+    try{
+      BufferedWriter writer =new BufferedWriter(new FileWriter("saveSlot" + saveSlot + ".csv"));
+      // type name health happiness full sleep
+      String petStatData = getPetStats.getPetType() + "," 
+      + getPetStats.getPetName() + "," 
+      + getPetStats.getHealth() + "," 
+      + getPetStats.getHappiness() + "," 
+      + getPetStats.getFullness() + "," 
+      + getPetStats.getSleep();
 
+      writer.write(petStatData);
+      writer.close();
+    }
+    catch(IOException e){
+    e.printStackTrace();
+    }
+  }
   public static void main(String[] args) {
     showWindow();
   }

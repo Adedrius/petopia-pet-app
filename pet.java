@@ -192,6 +192,9 @@ public class pet extends JFrame {
                     repaint();
                 }
             
+                private static void feedFish(){
+fullness = Math.min(fullness + 10, 100);
+                }
                 // Method to feed the pet
                 private void feedPet() {
                     // Increase fullness when pet is fed (but don't exceed 100)
@@ -364,7 +367,64 @@ public class pet extends JFrame {
             public static String getChicken() {
                 return Integer.toString(chicken); 
             }
-    
+
+           // Setters
+public void setPetType(String newPetType) {
+    petType = newPetType;
+}
+
+public void setPetName(String newPetName) {
+    petName = newPetName;
+}
+
+public void setHealth(int newHealth) {
+    health = newHealth;
+}
+
+public void setHappiness(int newHappiness) {
+    happiness = newHappiness;
+}
+
+public void setFullness(int newFullness) {
+    fullness = newFullness;
+}
+
+public void setSleep(int newSleep) {
+    sleep = newSleep; 
+}
+
+public void setBalls(int newBalls) {
+    balls = newBalls;
+}
+
+public void setFish(int newFish) {
+    fish = newFish;
+}
+
+public void setBears(int newBears) {
+    bears = newBears;
+}
+
+public void setMilk(int newMilk) {
+    milk = newMilk;
+}
+
+public void setBlocks(int newBlocks) {
+    blocks = newBlocks;
+}
+
+public void setTreats(int newTreats) {
+    treats = newTreats;
+}
+
+public void setSpinners(int newSpinners) {
+    spinners = newSpinners;
+}
+
+public void setChicken(int newChicken) {
+    chicken = newChicken;
+}
+
     
         public static void main(String[] args) {
             // Display the pet screen for a "cat" as an example

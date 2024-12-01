@@ -78,9 +78,6 @@ public class playerInventory {
          //add ball button
          JButton ballButton = new JButton("");
          ballButton.setBounds(400, 100, ballImage.getIconWidth(), ballImage.getIconHeight()); // x, y, width, height
-         ballButton.setBorderPainted(false);
-        ballButton.setFocusPainted(false);
-        ballButton.setContentAreaFilled(false);
          frame.add(ballButton);
          ballButton.addActionListener(e -> 
          frame.dispose()); // ball button
@@ -98,9 +95,6 @@ public class playerInventory {
         //add milk button
         JButton milkButton = new JButton("");
         milkButton.setBounds(45, 200, MilkImage.getIconWidth(), MilkImage.getIconHeight()); // x, y, width, height
-        milkButton.setBorderPainted(false);
-        milkButton.setFocusPainted(false);
-        milkButton.setContentAreaFilled(false);
         frame.add(milkButton);
         milkButton.addActionListener(e -> 
         frame.dispose()); // milk button
@@ -118,9 +112,6 @@ public class playerInventory {
          //add bear button
          JButton bearButton = new JButton("");
          bearButton.setBounds(400, 200, bearImage.getIconWidth(), bearImage.getIconHeight()); // x, y, width, height
-         bearButton.setBorderPainted(false);
-        bearButton.setFocusPainted(false);
-        bearButton.setContentAreaFilled(false);
          frame.add(bearButton);
          bearButton.addActionListener(e -> 
          frame.dispose()); // bear button
@@ -139,9 +130,6 @@ public class playerInventory {
         //add treats button
         JButton treatsButton = new JButton("");
         treatsButton.setBounds(45, 310, treatsImage.getIconWidth(), treatsImage.getIconHeight()); // x, y, width, height
-        treatsButton.setBorderPainted(false);
-        treatsButton.setFocusPainted(false);
-        treatsButton.setContentAreaFilled(false);
         frame.add(treatsButton);
         treatsButton.addActionListener(e -> 
         frame.dispose()); // treats button
@@ -158,9 +146,6 @@ public class playerInventory {
          //add Blocks button
          JButton blocksButton = new JButton("");
          blocksButton.setBounds(400, 310, blockImage.getIconWidth(), blockImage.getIconHeight()); // x, y, width, height
-         blocksButton.setBorderPainted(false);
-        blocksButton.setFocusPainted(false);
-        blocksButton.setContentAreaFilled(false);
          frame.add(blocksButton);
          blocksButton.addActionListener(e -> 
          frame.dispose()); // blocks button
@@ -177,9 +162,6 @@ public class playerInventory {
         //add chicken button
         JButton chickenButton = new JButton("");
         chickenButton.setBounds(45, 410, chickenImage.getIconWidth(), chickenImage.getIconHeight()); // x, y, width, height
-        chickenButton.setBorderPainted(false);
-        chickenButton.setFocusPainted(false);
-        chickenButton.setContentAreaFilled(false);
         chickenButton.addActionListener(e -> 
         frame.dispose()); // blocks button
         frame.add(chickenButton);
@@ -194,15 +176,12 @@ public class playerInventory {
         layeredPane.add(spinnerLabel, Integer.valueOf(1));
         layeredPane.add(spinnerRemLabel, Integer.valueOf(1));
 
-          //add spinner button
+          //add chicken button
           JButton spinnerButton = new JButton("");
           spinnerButton.setBounds(400, 440, spinnerImage.getIconWidth(), spinnerImage.getIconHeight()); // x, y, width, height
-          spinnerButton.setBorderPainted(false);
-          spinnerButton.setFocusPainted(false);
-          spinnerButton.setContentAreaFilled(false);
           frame.add(spinnerButton);
           spinnerButton.addActionListener(e -> 
-          frame.dispose()); // spinner button
+          frame.dispose()); // blocks button
 
 
         // Add the layered pane to the frame

@@ -94,10 +94,21 @@ public class saveGame {
       + getPetStats.getHealth() + "," 
       + getPetStats.getHappiness() + "," 
       + getPetStats.getFullness() + "," 
-      + getPetStats.getSleep();
+      + getPetStats.getSleep() + "," 
+      + getPetStats.getBalls() + "," 
+      + getPetStats.getFish() + "," 
+      + getPetStats.getBears() + "," 
+      + getPetStats.getMilk() + "," 
+      + getPetStats.getBlocks() + "," 
+      + getPetStats.getTreats() + "," 
+      + getPetStats.getSpinners() + "," 
+      + getPetStats.getChicken(); // balls, fish, bears, milk, blocks, treats, spinners, chicken
 
       writer.write(petStatData);
       writer.close();
+      JFrame frame = new JFrame("Save Game");
+      JOptionPane.showMessageDialog(frame, "Game has been saved to Save Slot" + saveSlot, "Saved", JOptionPane.INFORMATION_MESSAGE);
+
     }
     catch(IOException e){
     e.printStackTrace();

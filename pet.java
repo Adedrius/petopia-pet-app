@@ -14,6 +14,14 @@ public class pet extends JFrame {
         private static int happiness = 100;
         private static int fullness = 100;
         private static int sleep = 100;
+        public static int balls = 5;
+        public static int fish = 5;
+        public static int bears = 5;
+        public static int milk = 5;
+        public static int blocks = 5;
+        public static int treats = 5;
+        public static int spinners = 5;
+        public static int chicken = 5;
             
                 private Timer timer;  // Timer to decrease stats over time
         
@@ -30,14 +38,25 @@ public class pet extends JFrame {
                 private JButton vetButton;
                 private JButton gameOverButton;
                 private JButton saveGameButton;
+                private JButton mainMenuButton;
+                private JButton inventoryButton;
             
-                public pet(String petType, String petName, int health, int happiness, int fullness, int sleep) {
+                public pet(String petType, String petName, int health, int happiness, int fullness, int sleep, int balls, int fish, int bears, int milk, int blocks, int treats, int spinners, int chicken) {
                     this.petType = petType;
                     this.petName = petName;
                     this.health = health;
                     this.happiness = happiness;
                     this.fullness = fullness;
                     this.sleep = sleep;
+                    this.balls = balls;
+                    this.fish = fish;
+                    this.bears = bears;
+                    this.milk = milk;
+                    this.blocks = blocks;
+                    this.treats = treats;
+                    this.spinners = spinners;
+                    this.chicken = chicken;
+
                     pet.petType = petType;
                     pet.petName = petName;
                     isAlive = true;
@@ -47,6 +66,7 @@ public class pet extends JFrame {
             
                     // Set up window properties
                     setTitle("Your Pet in Petopia");
+                    JFrame frame = new JFrame("Your Pet in Petopia");
                     setSize(800, 600);
                     setLocationRelativeTo(null);
                     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -59,9 +79,26 @@ public class pet extends JFrame {
                         saveGameButton = new JButton("Save Game");
                         saveGameButton.setBounds(640, 20, 120, 40);  // Set position and size
                         saveGameButton.addActionListener(e -> 
-                        saveGame.showWindow()
-                        );  // Add action listener for feeding pet
+                        saveGame.showWindow());  // Add action listener for feeding pet
                         add(saveGameButton);
+
+                        inventoryButton = new JButton("Inventory"); //create inventory button
+                        inventoryButton.setBounds(640, 140, 120, 40);  // Set position and size     
+                        inventoryButton.addActionListener(e -> 
+                        playerInventory.showWindow());
+                        System.out.println(inventoryButton);
+                        add(inventoryButton);
+
+                        mainMenuButton = new JButton("Main Menu");
+                        mainMenuButton.setBounds(640, 80, 120, 40);  // Set position and size     
+
+                        mainMenuButton.addActionListener(e -> {
+                            dispose(); // Close the pet selection window
+                            mainMenu backHome = new mainMenu(); // Pass name to pet window
+                            backHome.setVisible(true);
+                        });
+                        add(mainMenuButton);
+
                         if (isAwake){
                 if (isHappy){ //can only feet, sleep and take pet to vet when pet is happy
                         feedButton = new JButton("Feed Pet");
@@ -301,13 +338,37 @@ public class pet extends JFrame {
             }
         
             public static String getSleep() {
-                return Integer.toString(sleep);
-    }
+                return Integer.toString(sleep); 
+            }
+            public static String getBalls() {
+                return Integer.toString(balls); 
+            }  
+            public static String getFish() {
+                return Integer.toString(fish); 
+            }  
+            public static String getBears() {
+                return Integer.toString(bears); 
+            }  
+            public static String getMilk() {
+                return Integer.toString(milk); 
+            }  
+            public static String getBlocks() {
+                return Integer.toString(blocks);
+            }  
+            public static String getTreats() {
+                return Integer.toString(treats); 
+            }  
+            public static String getSpinners() {
+                return Integer.toString(spinners); 
+            }  
+            public static String getChicken() {
+                return Integer.toString(chicken); 
+            }
     
     
         public static void main(String[] args) {
             // Display the pet screen for a "cat" as an example
-            pet pet = new pet(petType, petName, 100, 100, 100, 100);
+            pet pet = new pet(petType, petName, 100, 100, 100, 100, 5, 5, 5, 5, 5, 5, 5, 5);
         pet.setVisible(true);
     }
 

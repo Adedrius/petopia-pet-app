@@ -2,20 +2,21 @@ import javax.swing.*;
 import java.awt.*;
 
 public class playerInventory { 
-    public static int balls = 0;
-    public static int fish = 0;
-    public static int bears = 0;
-    public static int milk = 0;
-    public static int blocks = 0;
-    public static int treats = 0;
-    public static int spinners = 0;
-    public static int chicken = 0;
+    public static int balls;
+    public static int fish;
+    public static int bears;
+    public static int milk;
+    public static int blocks;
+    public static int treats;
+    public static int spinners;
+    public static int chicken;
 
     public static void showWindow() {
 
         JFrame frame = new JFrame("Inventory");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 600);
+        frame.setLocationRelativeTo(null);
 
         // Create a layered pane to manage layers
         JLayeredPane layeredPane = new JLayeredPane();
@@ -30,6 +31,12 @@ public class playerInventory {
 
         // Add background to the lowest layer
         layeredPane.add(backgroundLabel, Integer.valueOf(0));
+
+        JButton backToGame = new JButton("<-- Back to Game");
+    backToGame.setBounds(640, 20, 120, 40); // x, y, width, height
+    frame.add(backToGame);
+    backToGame.addActionListener(e -> 
+    frame.dispose()); // goes back to main game from inventory
 
         // Page title with rounded background
         JLabel pageTitle = makeRoundedLabel("Inventory", Color.WHITE, Color.BLACK, new Font("Arial", Font.BOLD, 30));
@@ -46,6 +53,15 @@ public class playerInventory {
         layeredPane.add(fishLabel, Integer.valueOf(1));
         layeredPane.add(fishRemLabel, Integer.valueOf(1));
 
+        //add fish button
+        JButton fishButton = new JButton("");
+    fishButton.setBounds(50, 100, fishImage.getIconWidth(), fishImage.getIconHeight()); // x, y, width, height
+    frame.add(fishButton);
+    fishButton.addActionListener(e -> 
+    frame.dispose()); // fish button
+    fishButton.setOpaque(false);
+
+
         // Add inventory item: Ball
         ImageIcon ballImage = new ImageIcon("inventory/ball.png");
         JLabel ballLabel = new JLabel(ballImage);
@@ -54,6 +70,14 @@ public class playerInventory {
         ballRemLabel.setBounds(530, 140, 200, 50);
         layeredPane.add(ballLabel, Integer.valueOf(1));
         layeredPane.add(ballRemLabel, Integer.valueOf(1));
+
+         //add ball button
+         JButton ballButton = new JButton("");
+         ballButton.setBounds(400, 100, ballImage.getIconWidth(), ballImage.getIconHeight()); // x, y, width, height
+         frame.add(ballButton);
+         ballButton.addActionListener(e -> 
+         frame.dispose()); // ball button
+         ballButton.setOpaque(false);
 
         // Add inventory item: Milk
         ImageIcon MilkImage = new ImageIcon("inventory/food4.png");
@@ -64,14 +88,30 @@ public class playerInventory {
         layeredPane.add(MilkLabel, Integer.valueOf(1));
         layeredPane.add(milkRemLabel, Integer.valueOf(1));
 
+        //add milk button
+        JButton milkButton = new JButton("");
+        milkButton.setBounds(45, 200, MilkImage.getIconWidth(), MilkImage.getIconHeight()); // x, y, width, height
+        frame.add(milkButton);
+        milkButton.addActionListener(e -> 
+        frame.dispose()); // milk button
+        milkButton.setOpaque(false);
+
         // Add inventory item: Bear
         ImageIcon bearImage = new ImageIcon("inventory/bear.png");
         JLabel bearLabel = new JLabel(bearImage);
         bearLabel.setBounds(400, 200, bearImage.getIconWidth(), bearImage.getIconHeight());
-        JLabel bearRemLabel = makeRoundedLabel(" Bears Remaining: " + bears, Color.WHITE, Color.BLACK, new Font("Arial", Font.BOLD, 20));
+        JLabel bearRemLabel = makeRoundedLabel(" Bears Remaining: " + getBears(), Color.WHITE, Color.BLACK, new Font("Arial", Font.BOLD, 20));
         bearRemLabel.setBounds(530, 240, 200, 50);
         layeredPane.add(bearLabel, Integer.valueOf(1));
         layeredPane.add(bearRemLabel, Integer.valueOf(1));
+
+         //add bear button
+         JButton bearButton = new JButton("");
+         bearButton.setBounds(400, 200, bearImage.getIconWidth(), bearImage.getIconHeight()); // x, y, width, height
+         frame.add(bearButton);
+         bearButton.addActionListener(e -> 
+         frame.dispose()); // bear button
+         bearButton.setOpaque(false);
 
         // Add inventory item: Treats
         ImageIcon treatsImage = new ImageIcon("inventory/food6.png");
@@ -82,6 +122,14 @@ public class playerInventory {
         layeredPane.add(treatsLabel, Integer.valueOf(1));
         layeredPane.add(treatsRemLabel, Integer.valueOf(1));
 
+        //add treats button
+        JButton treatsButton = new JButton("");
+        treatsButton.setBounds(45, 310, treatsImage.getIconWidth(), treatsImage.getIconHeight()); // x, y, width, height
+        frame.add(treatsButton);
+        treatsButton.addActionListener(e -> 
+        frame.dispose()); // treats button
+        treatsButton.setOpaque(false);
+
         // Add inventory item: Blocks
         ImageIcon blockImage = new ImageIcon("inventory/blocks.png");
         JLabel blockLabel = new JLabel(blockImage);
@@ -90,6 +138,14 @@ public class playerInventory {
         blockRemLabel.setBounds(530, 340, 210, 50);
         layeredPane.add(blockLabel, Integer.valueOf(1));
         layeredPane.add(blockRemLabel, Integer.valueOf(1));
+
+         //add Blocks button
+         JButton blocksButton = new JButton("");
+         blocksButton.setBounds(400, 310, blockImage.getIconWidth(), blockImage.getIconHeight()); // x, y, width, height
+         frame.add(blocksButton);
+         blocksButton.addActionListener(e -> 
+         frame.dispose()); // blocks button
+         blocksButton.setOpaque(false);
 
         // Add inventory item: Chicken
         ImageIcon chickenImage = new ImageIcon("inventory/food3.png");
@@ -100,6 +156,14 @@ public class playerInventory {
         layeredPane.add(chickenLabel, Integer.valueOf(1));
         layeredPane.add(chickenRemLabel, Integer.valueOf(1));
 
+        //add chicken button
+        JButton chickenButton = new JButton("");
+        chickenButton.setBounds(45, 410, chickenImage.getIconWidth(), chickenImage.getIconHeight()); // x, y, width, height
+        frame.add(chickenButton);
+        chickenButton.addActionListener(e -> 
+        frame.dispose()); // blocks button
+        chickenButton.setOpaque(false);
+
         // Add inventory item: Spinner
         ImageIcon spinnerImage = new ImageIcon("inventory/spinner.png");
         JLabel spinnerLabel = new JLabel(spinnerImage);
@@ -108,6 +172,14 @@ public class playerInventory {
         spinnerRemLabel.setBounds(530, 440, 230, 50);
         layeredPane.add(spinnerLabel, Integer.valueOf(1));
         layeredPane.add(spinnerRemLabel, Integer.valueOf(1));
+
+          //add chicken button
+          JButton spinnerButton = new JButton("");
+          spinnerButton.setBounds(400, 440, spinnerImage.getIconWidth(), spinnerImage.getIconHeight()); // x, y, width, height
+          frame.add(spinnerButton);
+          spinnerButton.addActionListener(e -> 
+          frame.dispose()); // blocks button
+          spinnerButton.setOpaque(false);
 
 
         // Add the layered pane to the frame
@@ -147,7 +219,7 @@ public class playerInventory {
     }
 
     public static int getBalls() {
-        return balls;
+        return Integer.parseInt(getPetStats.getBalls());
     }
 
     public static void setBalls(int balls) {
@@ -155,7 +227,8 @@ public class playerInventory {
     }
 
     public static int getFish() {
-        return fish;
+        return Integer.parseInt(getPetStats.getFish());
+        
     }
 
     public static void setFish(int fish) {
@@ -163,7 +236,7 @@ public class playerInventory {
     }
 
     public static int getBears() {
-        return bears;
+       return Integer.parseInt(getPetStats.getBears());
     }
 
     public static void setBears(int bears) {
@@ -171,7 +244,7 @@ public class playerInventory {
     }
 
     public static int getMilk() {
-        return milk;
+         return Integer.parseInt(getPetStats.getMilk());
     }
 
     public static void setMilk(int milk) {
@@ -179,7 +252,8 @@ public class playerInventory {
     }
 
     public static int getBlocks() {
-        return blocks;
+        return Integer.parseInt(getPetStats.getBlocks());
+
     }
 
     public static void setBlocks(int blocks) {
@@ -187,7 +261,8 @@ public class playerInventory {
     }
 
     public static int getTreats() {
-        return treats;
+        return Integer.parseInt(getPetStats.getTreats());
+
     }
 
     public static void setTreats(int treats) {
@@ -195,7 +270,8 @@ public class playerInventory {
     }
 
     public static int getSpinners() {
-        return spinners;
+        return Integer.parseInt(getPetStats.getSpinners());
+
     }
 
     public static void setSpinners(int spinners) {
@@ -203,7 +279,8 @@ public class playerInventory {
     }
 
     public static int getChicken() {
-        return chicken;
+        return Integer.parseInt(getPetStats.getChicken());
+
     }
 
     public static void setChicken(int chicken) {

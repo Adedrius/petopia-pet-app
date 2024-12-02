@@ -125,6 +125,9 @@ public class mainMenu extends JFrame {
         });
 
         timer.start();
+
+        backgroundMusic sound = new backgroundMusic();
+        sound.playSong();
     }
 
     // Main method to launch the main menu

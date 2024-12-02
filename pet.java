@@ -43,6 +43,7 @@ public class pet extends JFrame {
                 private JButton saveGameButton;
                 private JButton mainMenuButton;
                 private JButton inventoryButton;
+                private JButton exerciseButton;
             
                 public pet(String petType, String petName, int health, int happiness, int fullness, int sleep, int balls, int fish, int bears, int milk, int blocks, int treats, int spinners, int chicken, int score) {
                     this.petType = petType;
@@ -81,7 +82,7 @@ public class pet extends JFrame {
                     // Create and add the feed button
                     if (isAlive){ //can only fully interact with pet when alive and awake
                         saveGameButton = new JButton("Save Game");
-                        saveGameButton.setBounds(640, 20, 120, 40);  // Set position and size
+                        saveGameButton.setBounds(640, 200, 120, 40);  // Set position and size
                         saveGameButton.addActionListener(e -> 
                         saveGame.showWindow());  // Add action listener for feeding pet
                         add(saveGameButton);
@@ -104,29 +105,34 @@ public class pet extends JFrame {
                         add(mainMenuButton);
 
                         if (isAwake){
-                if (isHappy){ //can only feet, sleep and take pet to vet when pet is happy
-                        feedButton = new JButton("Feed Pet");
-                feedButton.setBounds(500, 20, 120, 40);  // Set position and size
-                feedButton.addActionListener(e -> feedPet());  // Add action listener for feeding pet
-                add(feedButton);
-        
-                // Create and add the sleep button
-                sleepButton = new JButton("Put pet to sleep");
-                sleepButton.setBounds(20, 20, 150, 40);  // Position along the top (x: 20px)
-                sleepButton.addActionListener(e -> putToSleep());  // Add action listener for sleep
-                add(sleepButton);
-                // Create and add the vet button
-                vetButton = new JButton("Bring pet to vet");
-                vetButton.setBounds(340, 20, 150, 40);  // Position along the top (x: 340px)
-                vetButton.addActionListener(e -> bringToVet());  // Add action listener for vet
-                add(vetButton);
-                }
-                 //only playing allowed when pet is unhappy
-                    // Create and add the play button
-                   playButton = new JButton("Play with Pet");
-                   playButton.setBounds(180, 20, 150, 40);  // Position along the top (x: 180px)
-                   playButton.addActionListener(e -> playWithPet());  // Add action listener for play
-                   add(playButton);
+                            if (isHappy){ //can only feet, sleep and take pet to vet when pet is happy
+                                 feedButton = new JButton("Feed Pet");
+                                feedButton.setBounds(490, 20, 120, 40);  // Set position and size
+                                feedButton.addActionListener(e -> feedPet());  // Add action listener for feeding pet
+                                add(feedButton);
+                        
+                                // Create and add the sleep button
+                                sleepButton = new JButton("Put pet to sleep");
+                                sleepButton.setBounds(10, 20, 150, 40);  // Position along the top (x: 20px)
+                                sleepButton.addActionListener(e -> putToSleep());  // Add action listener for sleep
+                                add(sleepButton);
+                                // Create and add the vet button
+                                vetButton = new JButton("Bring pet to vet");
+                                vetButton.setBounds(330, 20, 150, 40);  // Position along the top (x: 340px)
+                                vetButton.addActionListener(e -> bringToVet());  // Add action listener for vet
+                                add(vetButton);
+
+                                exerciseButton = new JButton("Exercise pet");
+                                exerciseButton.setBounds(630, 20, 150, 40);  // Position along the top (x: 340px)
+                                exerciseButton.addActionListener(e -> exercisePet());  // Add action listener for vet
+                                add(exerciseButton);
+                                            }
+                            //only playing allowed when pet is unhappy
+                                // Create and add the play button
+                            playButton = new JButton("Play with Pet");
+                            playButton.setBounds(170, 20, 150, 40);  // Position along the top (x: 180px)
+                            playButton.addActionListener(e -> playWithPet());  // Add action listener for play
+                            add(playButton);
                 
                 }
             }
@@ -197,7 +203,7 @@ public class pet extends JFrame {
                 }
             
                 private static void feedFish(){
-fullness = Math.min(fullness + 10, 100);
+                    fullness = Math.min(fullness + 10, 100);
                 }
                 // Method to feed the pet
                 private void feedPet() {
@@ -265,6 +271,20 @@ fullness = Math.min(fullness + 10, 100);
                     }
                     repaint();
                 }
+
+                private void exercisePet() {
+                    score = Math.max(score + 1, 0);
+                    health = Math.min(health + 10, 100);  // Increase health but don't exceed 100
+                    try {
+                        backgroundImage = ImageIO.read(new File("images/background.png"));
+                       
+                        petImage = ImageIO.read(new File("sprites/" + petType + "_gym.png"));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        System.out.println("Error loading image.");
+                    }
+                    repaint();
+                }
             
                 @Override
             public void paint(Graphics g) {
@@ -323,7 +343,7 @@ fullness = Math.min(fullness + 10, 100);
                  g.drawString("Happiness: " + happiness, 220, yPos);
                  g.drawString("Fullness: " + fullness, 420, yPos);
                  g.drawString("Sleep: " + sleep, 620, yPos);
-                 g.drawString("Score: " + score, 650, yPos - 300);
+                 g.drawString("Score: " + score, 40, yPos - 420);
             }
                
             }

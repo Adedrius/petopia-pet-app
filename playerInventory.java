@@ -37,7 +37,6 @@ public class playerInventory {
         frame.add(backToGame);
         backToGame.addActionListener(e -> 
         frame.dispose()); // goes back to main game from inventory
-        frame.add(backToGame);
 
         // Page title with rounded background
         JLabel pageTitle = makeRoundedLabel("Inventory", Color.WHITE, Color.BLACK, new Font("Arial", Font.BOLD, 30));

@@ -2,6 +2,12 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class childLimitations {
   public static void showWindow() {
@@ -38,18 +44,42 @@ public class childLimitations {
     saveSlot1.setMargin(new Insets(10, 20, 10, 20)); // top, left, bottom, right
     saveSlot1.setHorizontalAlignment(SwingConstants.CENTER);
     frame.add(saveSlot1);
+    saveSlot1.addActionListener(e -> {
+      try {
+        revivePet("1");
+      } catch (Exception e1) {
+        // TODO Auto-generated catch block
+        e1.printStackTrace();
+      }
+    }); 
 
     JButton saveSlot2 = new JButton("<html><div align='center'>REVIVE<br>Save Slot 2 Pet</div></html>");
     saveSlot2.setBounds(305, 160, 120, 50); // x, y, width, height
     saveSlot2.setMargin(new Insets(10, 20, 10, 20)); // top, left, bottom, right
     saveSlot2.setHorizontalAlignment(SwingConstants.CENTER);
     frame.add(saveSlot2);
+    saveSlot2.addActionListener(e -> {
+      try {
+        revivePet("2");
+      } catch (Exception e1) {
+        // TODO Auto-generated catch block
+        e1.printStackTrace();
+      }
+    }); 
 
     JButton saveSlot3 = new JButton("<html><div align='center'>REVIVE<br>Save Slot 3 Pet</div></html>");
     saveSlot3.setBounds(305, 215, 120, 50); // x, y, width, height
     saveSlot3.setMargin(new Insets(10, 20, 10, 20)); // top, left, bottom, right
     saveSlot3.setHorizontalAlignment(SwingConstants.CENTER);
     frame.add(saveSlot3);
+    saveSlot3.addActionListener(e -> {
+      try {
+        revivePet("3");
+      } catch (Exception e1) {
+        // TODO Auto-generated catch block
+        e1.printStackTrace();
+      }
+    }); 
 
     JButton parentalChanges = new JButton("<html><div align='center'>Back to<br>Parental Controls</div></html>");
     parentalChanges.setBounds(155, 300, 180, 45); // x, y, width, height
@@ -81,7 +111,45 @@ public class childLimitations {
     // Set the frame's visibility
     frame.setVisible(true);
   }
+  
+  //revive pet
+  public static void revivePet(String saveSlot ) throws Exception {
+    String path = "saveSlot" +saveSlot + ".csv";
+    try{
+      BufferedReader br = new BufferedReader(new FileReader(path));
+      BufferedWriter writer =new BufferedWriter(new FileWriter("saveSlot" + saveSlot + ".csv"));
+      String petReset = getPetStats.getPetType() + ','
+      + getPetStats.getPetName() + ","
+      + "100," // health
+      + "100," // happiness
+      + "100," // fullness
+      + "100," // sleep
+      + "5," // Balls
+      + "5," // fish
+      + "5," // bears
+      + "5," // milk
+      + "5," // blocks
+      + "5," // treats
+      + "5," // spinners
+      + "5," // chicken
+      + getPetStats.getScore(); // score
+      writer.write(petReset);
+      writer.close();
+      JFrame frame = new JFrame("Revived Pet");
+      JOptionPane.showMessageDialog(frame, "Save Slot " + saveSlot + " has had the pet revived", "Revived", JOptionPane.INFORMATION_MESSAGE);
 
+    }
+    catch(FileNotFoundException e){
+        JFrame frame = new JFrame("GAME DOES NOT EXIST");
+                JOptionPane.showMessageDialog(frame, "Save File not found. Please try again or start a new game.", "Error Finding Game", JOptionPane.ERROR_MESSAGE);
+    e.printStackTrace();
+    }
+    catch(IOException e){
+        JFrame frame = new JFrame("GAME DOES NOT EXIST");
+        JOptionPane.showMessageDialog(frame, "Save File not found. Please try again or start a new game.", "Error Finding Game", JOptionPane.ERROR_MESSAGE);
+        e.printStackTrace();
+        }
+  }
   public static void main(String[] args) {
     showWindow();
   }

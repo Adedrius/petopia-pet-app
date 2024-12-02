@@ -159,8 +159,7 @@ public class pet extends JFrame {
                 private void updateStats() {
                     // Decrease stats over time
                     if (health > 0) {
-                        isAlive = true;
-                    }
+                        isAlive = true;                    }
                     if (happiness > 0) {
                         isHappy = true;
                         happiness -= 1;
@@ -327,15 +326,7 @@ public class pet extends JFrame {
                 if (!isAlive){
                     g.setColor(Color.RED);
                     g.setFont(new Font("Arial", Font.PLAIN, 40));
-                    g.drawString("PET IS DEAD. GAME OVER", 130, 200);
-                    gameOverButton = new JButton("Main Menu");
-                    gameOverButton.setBounds(320, 100, 150, 40);  // Position along the top (x: 180px)
-                    gameOverButton.addActionListener( e -> {
-                        this.dispose();
-                            mainMenu mainMenu = new mainMenu();
-                });
-                add(gameOverButton);
-        
+                    g.drawString("PET IS DEAD. GAME OVER", 130, 200);        
             }
                 else{
         

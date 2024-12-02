@@ -1,26 +1,30 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class playerInventory { 
-    public static int balls;
-    public static int fish;
-    public static int bears;
-    public static int milk;
-    public static int blocks;
-    public static int treats;
-    public static int spinners;
-    public static int chicken;
+
+public class playerInventory {
+    public static int balls = 5;
+    public static int fish = 5;
+    public static int bears = 5;
+    public static int milk = 5;
+    public static int blocks = 5;
+    public static int treats = 5;
+    public static int spinners = 5;
+    public static int chicken = 5;
     private JButton backtoGame;
     public static void showWindow() {
+
 
         JFrame frame = new JFrame("Inventory");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 600);
         frame.setLocationRelativeTo(null);
 
+
         // Create a layered pane to manage layers
         JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.setBounds(0, 0, frame.getWidth(), frame.getHeight());
+
 
         // Background image
         ImageIcon originalBackgroundImage = new ImageIcon("images/background.png");
@@ -29,20 +33,24 @@ public class playerInventory {
         backgroundLabel.setIcon(new ImageIcon(backgroundImage));
         backgroundLabel.setBounds(0, 0, frame.getWidth(), frame.getHeight());
 
+
         // Add background to the lowest layer
         layeredPane.add(backgroundLabel, Integer.valueOf(0));
 
+
         JButton backToGame = new JButton("<-- Back to Game");
-        backToGame.setBounds(640, 20, 120, 40); // x, y, width, height
+        backToGame.setBounds(600, 20, 140, 40); // x, y, width, height
         frame.add(backToGame);
-        backToGame.addActionListener(e -> 
+        backToGame.addActionListener(e ->
         frame.dispose()); // goes back to main game from inventory
+
 
         // Page title with rounded background
         JLabel pageTitle = makeRoundedLabel("Inventory", Color.WHITE, Color.BLACK, new Font("Arial", Font.BOLD, 30));
         pageTitle.setBounds(275, 45, 225, 50); // Increase height for padding
         pageTitle.setHorizontalAlignment(SwingConstants.CENTER);  // Center-align text
         layeredPane.add(pageTitle, Integer.valueOf(1));
+
 
         // Add inventory item: Fish
         ImageIcon fishImage = new ImageIcon("inventory/food1.png");
@@ -53,16 +61,29 @@ public class playerInventory {
         layeredPane.add(fishLabel, Integer.valueOf(1));
         layeredPane.add(fishRemLabel, Integer.valueOf(1));
 
+
         //add fish button
         JButton fishButton = new JButton("");
-    fishButton.setBounds(50, 100, fishImage.getIconWidth(), fishImage.getIconHeight()); // x, y, width, height
-    
-    fishButton.setBorderPainted(false);
+        fishButton.setBounds(50, 100, fishImage.getIconWidth(), fishImage.getIconHeight()); // x, y, width, height
+   
+        fishButton.setBorderPainted(false);
         fishButton.setFocusPainted(false);
         fishButton.setContentAreaFilled(false);
-    frame.add(fishButton);
-    fishButton.addActionListener(e -> 
-    frame.dispose()); // fish button
+        frame.add(fishButton);
+        fishButton.addActionListener(e -> {
+            if (getFish() > 0) {
+                setFish(getFish() - 1);
+                pet.setFullnessValue((pet.getFullnessValue() + 10)); // Add 10 to fullness
+                fishRemLabel.setText(" Fish Remaining: " + getFish());
+                System.out.println("Fish used! Remaining fish: " + getFish());
+                System.out.println("Pet fullness: " + pet.getFullnessValue());
+            } else {
+                JOptionPane.showMessageDialog(frame, "No fish remaining!", "Error", JOptionPane.WARNING_MESSAGE);
+            }
+            frame.dispose();
+        });
+
+
 
 
         // Add inventory item: Ball
@@ -74,16 +95,28 @@ public class playerInventory {
         layeredPane.add(ballLabel, Integer.valueOf(1));
         layeredPane.add(ballRemLabel, Integer.valueOf(1));
 
+
          //add ball button
-         JButton ballButton = new JButton("");
-         ballButton.setBounds(400, 100, ballImage.getIconWidth(), ballImage.getIconHeight()); // x, y, width, height
-         ballButton.setBorderPainted(false);
+        JButton ballButton = new JButton("");
+        ballButton.setBounds(400, 100, ballImage.getIconWidth(), ballImage.getIconHeight()); // x, y, width, height
+        ballButton.setBorderPainted(false);
         ballButton.setFocusPainted(false);
         ballButton.setContentAreaFilled(false);
-         frame.add(ballButton);
-         ballButton.addActionListener(e -> 
-         frame.dispose()); // ball button
+        frame.add(ballButton);
+        ballButton.addActionListener(e -> {
+            if (getBalls() > 0) {
+                setBalls(getBalls() - 1);
+                pet.setHappinessValue((pet.getHappinessValue() + 8)); // Add 8 to happiness
+                ballRemLabel.setText(" Balls Remaining: " + getBalls());
+                System.out.println("Ball used! Remaining balls: " + getBalls());
+                System.out.println("Pet happiness: " + pet.getHappinessValue());
+            } else {
+                JOptionPane.showMessageDialog(frame, "No balls remaining!", "Error", JOptionPane.WARNING_MESSAGE);
+            }
+            frame.dispose();
+        });
        
+
 
         // Add inventory item: Milk
         ImageIcon MilkImage = new ImageIcon("inventory/food4.png");
@@ -94,6 +127,7 @@ public class playerInventory {
         layeredPane.add(MilkLabel, Integer.valueOf(1));
         layeredPane.add(milkRemLabel, Integer.valueOf(1));
 
+
         //add milk button
         JButton milkButton = new JButton("");
         milkButton.setBounds(45, 200, MilkImage.getIconWidth(), MilkImage.getIconHeight()); // x, y, width, height
@@ -101,9 +135,20 @@ public class playerInventory {
         milkButton.setFocusPainted(false);
         milkButton.setContentAreaFilled(false);
         frame.add(milkButton);
-        milkButton.addActionListener(e -> 
-        frame.dispose()); // milk button
-        
+        milkButton.addActionListener(e -> {
+            if (getMilk() > 0) {
+                setMilk(getMilk() - 1);
+                pet.setFullnessValue((pet.getFullnessValue() + 8)); // Add 8 to fullness
+                milkRemLabel.setText(" Milk Remaining: " + getMilk());
+                System.out.println("Milk used! Remaining milk: " + getMilk());
+                System.out.println("Pet fullness: " + pet.getFullnessValue());
+            } else {
+                JOptionPane.showMessageDialog(frame, "No milk remaining!", "Error", JOptionPane.WARNING_MESSAGE);
+            }
+            frame.dispose();
+        });
+       
+
 
         // Add inventory item: Bear
         ImageIcon bearImage = new ImageIcon("inventory/bear.png");
@@ -114,17 +159,29 @@ public class playerInventory {
         layeredPane.add(bearLabel, Integer.valueOf(1));
         layeredPane.add(bearRemLabel, Integer.valueOf(1));
 
+
          //add bear button
-         JButton bearButton = new JButton("");
-         bearButton.setBounds(400, 200, bearImage.getIconWidth(), bearImage.getIconHeight()); // x, y, width, height
-         bearButton.setBorderPainted(false);
+        JButton bearButton = new JButton("");
+        bearButton.setBounds(400, 200, bearImage.getIconWidth(), bearImage.getIconHeight()); // x, y, width, height
+        bearButton.setBorderPainted(false);
         bearButton.setFocusPainted(false);
         bearButton.setContentAreaFilled(false);
-         frame.add(bearButton);
-         bearButton.addActionListener(e -> 
-         frame.dispose()); // bear button
-      
+        frame.add(bearButton);
+        bearButton.addActionListener(e -> {
+            if (getBears() > 0) {
+                setBears(getBears() - 1);
+                pet.setHappinessValue((pet.getHappinessValue() + 15)); // Add 15 to happiness
+                bearRemLabel.setText(" Bears Remaining: " + getBears());
+                System.out.println("Bear used! Remaining bears: " + getBears());
+                System.out.println("Pet happiness: " + pet.getHappinessValue());
+            } else {
+                JOptionPane.showMessageDialog(frame, "No bears remaining!", "Error", JOptionPane.WARNING_MESSAGE);
+            }
+            frame.dispose();
+        });
+     
  
+
 
         // Add inventory item: Treats
         ImageIcon treatsImage = new ImageIcon("inventory/food6.png");
@@ -135,6 +192,7 @@ public class playerInventory {
         layeredPane.add(treatsLabel, Integer.valueOf(1));
         layeredPane.add(treatsRemLabel, Integer.valueOf(1));
 
+
         //add treats button
         JButton treatsButton = new JButton("");
         treatsButton.setBounds(45, 310, treatsImage.getIconWidth(), treatsImage.getIconHeight()); // x, y, width, height
@@ -142,9 +200,27 @@ public class playerInventory {
         treatsButton.setFocusPainted(false);
         treatsButton.setContentAreaFilled(false);
         frame.add(treatsButton);
-        treatsButton.addActionListener(e -> 
-        frame.dispose()); // treats button
-        
+        treatsButton.addActionListener(e -> {
+            if (getTreats() > 0) {
+                // Decrease treats count
+                setTreats(getTreats() - 1);
+       
+                // Update pet's happiness
+                pet.setFullnessValue((pet.getFullnessValue() + 5)); // Add 5 to fullness (example value)
+       
+                // Refresh treats label
+                treatsRemLabel.setText(" Treats Remaining: " + getTreats());
+       
+                // Optionally print to console for debugging
+                System.out.println("Treat used! Remaining treats: " + getTreats());
+                System.out.println("Pet fullness: " + pet.getFullnessValue());
+            } else {
+                // Show error if no treats are left
+                JOptionPane.showMessageDialog(frame, "No treats remaining!", "Error", JOptionPane.WARNING_MESSAGE);
+            }
+            frame.dispose();
+        });
+       
         // Add inventory item: Blocks
         ImageIcon blockImage = new ImageIcon("inventory/blocks.png");
         JLabel blockLabel = new JLabel(blockImage);
@@ -154,16 +230,36 @@ public class playerInventory {
         layeredPane.add(blockLabel, Integer.valueOf(1));
         layeredPane.add(blockRemLabel, Integer.valueOf(1));
 
+
          //add Blocks button
-         JButton blocksButton = new JButton("");
-         blocksButton.setBounds(400, 310, blockImage.getIconWidth(), blockImage.getIconHeight()); // x, y, width, height
-         blocksButton.setBorderPainted(false);
+        JButton blocksButton = new JButton("");
+        blocksButton.setBounds(400, 310, blockImage.getIconWidth(), blockImage.getIconHeight()); // x, y, width, height
+        blocksButton.setBorderPainted(false);
         blocksButton.setFocusPainted(false);
         blocksButton.setContentAreaFilled(false);
-         frame.add(blocksButton);
-         blocksButton.addActionListener(e -> 
-         frame.dispose()); // blocks button
-        
+        frame.add(blocksButton);
+        blocksButton.addActionListener(e -> {
+            if (getBlocks() > 0) {
+                // Decrease block count
+                setBlocks(getBlocks() - 1);
+       
+                // Update pet's happiness
+                pet.setHappinessValue((pet.getHappinessValue() + 10)); // Add 10 to happiness (example value)
+       
+                // Refresh block label
+                blockRemLabel.setText(" Blocks Remaining: " + getBlocks());
+       
+                // Optionally print to console for debugging
+                System.out.println("Block used! Remaining blocks: " + getBlocks());
+                System.out.println("Pet happiness: " + pet.getHappinessValue());
+            } else {
+                // Show error if no blocks are left
+                JOptionPane.showMessageDialog(frame, "No blocks remaining!", "Error", JOptionPane.WARNING_MESSAGE);
+            }
+            frame.dispose();
+        });
+       
+       
         // Add inventory item: Chicken
         ImageIcon chickenImage = new ImageIcon("inventory/food3.png");
         JLabel chickenLabel = new JLabel(chickenImage);
@@ -173,41 +269,69 @@ public class playerInventory {
         layeredPane.add(chickenLabel, Integer.valueOf(1));
         layeredPane.add(chickenRemLabel, Integer.valueOf(1));
 
+
         //add chicken button
         JButton chickenButton = new JButton("");
         chickenButton.setBounds(45, 410, chickenImage.getIconWidth(), chickenImage.getIconHeight()); // x, y, width, height
         chickenButton.setBorderPainted(false);
         chickenButton.setFocusPainted(false);
         chickenButton.setContentAreaFilled(false);
-        chickenButton.addActionListener(e -> 
-        frame.dispose()); // blocks button
         frame.add(chickenButton);
+        chickenButton.addActionListener(e -> {
+            if (getChicken() > 0) {
+                setChicken(getChicken() - 1);
+                pet.setFullnessValue((pet.getFullnessValue() + 12)); // Add 12 to fullness
+                chickenRemLabel.setText(" Chicken Remaining: " + getChicken());
+                System.out.println("Chicken used! Remaining chicken: " + getChicken());
+                System.out.println("Pet fullness: " + pet.getFullnessValue());
+            } else {
+                JOptionPane.showMessageDialog(frame, "No chicken remaining!", "Error", JOptionPane.WARNING_MESSAGE);
+            }
+            frame.dispose();
+        });
+
+
 
 
         // Add inventory item: Spinner
         ImageIcon spinnerImage = new ImageIcon("inventory/spinner.png");
-        JLabel spinnerLabel = new JLabel("");
+        JLabel spinnerLabel = new JLabel(spinnerImage); // Corrected to use the image icon
         spinnerLabel.setBounds(400, 410, spinnerImage.getIconWidth(), spinnerImage.getIconHeight());
+        layeredPane.add(spinnerLabel, Integer.valueOf(1));
+
+
+        // Add the spinner remaining label
         JLabel spinnerRemLabel = makeRoundedLabel(" Spinners Remaining: " + getSpinners(), Color.WHITE, Color.BLACK, new Font("Arial", Font.BOLD, 20));
         spinnerRemLabel.setBounds(530, 440, 230, 50);
-        layeredPane.add(spinnerLabel, Integer.valueOf(1));
         layeredPane.add(spinnerRemLabel, Integer.valueOf(1));
 
-          //add spinner button
-          JButton spinnerButton = new JButton("");
-          spinnerButton.setBounds(400, 440, spinnerImage.getIconWidth(), spinnerImage.getIconHeight()); // x, y, width, height
-          spinnerButton.setBorderPainted(false);
-          spinnerButton.setFocusPainted(false);
-          spinnerButton.setContentAreaFilled(false);
-          frame.add(spinnerButton);
-          spinnerButton.addActionListener(e -> 
-          frame.dispose()); // spinner button
+
+        // Add spinner button
+        JButton spinnerButton = new JButton("");
+        spinnerButton.setBounds(400, 410, spinnerImage.getIconWidth(), spinnerImage.getIconHeight()); // x, y, width, height
+        spinnerButton.setBorderPainted(false);
+        spinnerButton.setFocusPainted(false);
+        spinnerButton.setContentAreaFilled(false);
+        frame.add(spinnerButton);
+        spinnerButton.addActionListener(e -> {
+            if (getSpinners() > 0) {
+                setSpinners(getSpinners() - 1);
+                pet.setHappinessValue((pet.getHappinessValue() + 20)); // Add 20 to happiness
+                spinnerRemLabel.setText(" Spinners Remaining: " + getSpinners());
+                System.out.println("Spinner used! Remaining spinners: " + getSpinners());
+                System.out.println("Pet happiness: " + pet.getHappinessValue());
+            } else {
+                JOptionPane.showMessageDialog(frame, "No spinners remaining!", "Error", JOptionPane.WARNING_MESSAGE);
+            }
+            frame.dispose();
+        });
 
 
         // Add the layered pane to the frame
         frame.add(layeredPane);
         frame.setVisible(true);
     }
+
 
     /**
      * Creates a JLabel with a rounded background.
@@ -225,14 +349,17 @@ public class playerInventory {
                 Graphics2D g2 = (Graphics2D) g;
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
+
                 // Draw the rounded background
                 g2.setColor(bgColor);
                 g2.fillRoundRect(0, 0, getWidth(), getHeight(), 30, 30);
+
 
                 // Draw the text
                 super.paintComponent(g);
             }
         };
+
 
         label.setFont(font);  // Set font for the label
         label.setForeground(textColor);  // Set text color
@@ -240,77 +367,98 @@ public class playerInventory {
         return label;
     }
 
+
     public static int getBalls() {
-        return Integer.parseInt(getPetStats.getBalls());
+        return balls;
     }
 
-    public static void setBalls(int balls) {
-        playerInventory.balls = balls;
+
+    public static void setBalls(int setBalls) {
+        balls = setBalls;
     }
+
 
     public static int getFish() {
-        return Integer.parseInt(getPetStats.getFish());
-        
+        return fish;
+       
     }
 
-    public static void setFish(int fish) {
-        playerInventory.fish = fish;
+
+    public static void setFish(int setFish) {
+        fish = setFish;
     }
+
 
     public static int getBears() {
-       return Integer.parseInt(getPetStats.getBears());
+       return bears;
     }
 
-    public static void setBears(int bears) {
-        playerInventory.bears = bears;
+
+    public static void setBears(int setBears) {
+        bears = setBears;
     }
+
 
     public static int getMilk() {
-         return Integer.parseInt(getPetStats.getMilk());
+        return milk;
     }
 
-    public static void setMilk(int milk) {
-        playerInventory.milk = milk;
+
+    public static void setMilk(int setMilk) {
+        milk = setMilk;
     }
+
 
     public static int getBlocks() {
-        return Integer.parseInt(getPetStats.getBlocks());
+        return blocks;
+
 
     }
 
-    public static void setBlocks(int blocks) {
-        playerInventory.blocks = blocks;
+
+    public static void setBlocks(int setBlocks) {
+        blocks = setBlocks;
     }
+
 
     public static int getTreats() {
-        return Integer.parseInt(getPetStats.getTreats());
+        return treats;
+
 
     }
 
-    public static void setTreats(int treats) {
-        playerInventory.treats = treats;
+
+    public static void setTreats(int setTreats) {
+        treats = setTreats;
     }
+
 
     public static int getSpinners() {
-        return Integer.parseInt(getPetStats.getSpinners());
+        return spinners;
+
 
     }
 
-    public static void setSpinners(int spinners) {
-        playerInventory.spinners = spinners;
+
+    public static void setSpinners(int setSpinners) {
+        spinners = setSpinners;
     }
+
 
     public static int getChicken() {
-        return Integer.parseInt(getPetStats.getChicken());
+        return chicken;
+
 
     }
 
-    public static void setChicken(int chicken) {
-        playerInventory.chicken = chicken;
+
+    public static void setChicken(int setChicken) {
+        chicken = setChicken;
     }
+
 
     public static void main(String[] args) {
-        setFish(5); // Example of setting a value from another class
+        setBlocks(5); // Example of setting a value from another class
         showWindow();
     }
 }

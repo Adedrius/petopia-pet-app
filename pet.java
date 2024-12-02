@@ -222,8 +222,24 @@ public class pet extends JFrame {
                     fullness = Math.min(fullness + 20, 100);
                     try {
                         backgroundImage = ImageIO.read(new File("images/background.png"));
-                       
-                        petImage = ImageIO.read(new File("sprites/" + petType + "_eating.png"));
+                        if(isAlive){
+                            if(!isAwake){
+                                petImage = ImageIO.read(new File("sprites/" + petType + "_sleeping.png"));     
+                            }
+                            else{
+                                if (!isHappy){
+                                    petImage = ImageIO.read(new File("sprites/" + petType + "_angry.png"));
+                                }
+                                else{
+                                    if(!isFull){
+                                        petImage = ImageIO.read(new File("sprites/" + petType + "_hungry.png"));
+                                    }
+                                    else{
+                                petImage = ImageIO.read(new File("sprites/" + petType + "_eating.png"));
+                                    }
+                                }
+                            }
+                        }
                     } catch (Exception e) {
                         e.printStackTrace();
                         System.out.println("Error loading image.");

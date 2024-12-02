@@ -102,10 +102,11 @@ public class loadGame {
       int treats = Integer.parseInt(values[11]);
       int spinners = Integer.parseInt(values[12]);
       int chicken = Integer.parseInt(values[13]);
+      int score = Integer.parseInt(values[14]);
 
 
       
-            pet petWindow = new pet(petType, petName, health, happiness, fullness, sleep, balls, fish, bears, milk, blocks, treats, spinners, chicken); // Pass name to pet window
+            pet petWindow = new pet(petType, petName, health, happiness, fullness, sleep, balls, fish, bears, milk, blocks, treats, spinners, chicken, score); // Pass name to pet window
             petWindow.setVisible(true);
       }
     catch(FileNotFoundException e){

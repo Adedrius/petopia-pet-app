@@ -4,8 +4,8 @@ public class getPetStats extends pet {
     private static pet pet;
     
         // Constructor that takes a Pet object
-        public getPetStats(String petType, String petName, int health, int happiness, int fullness, int sleep, int balls, int fish, int bears, int milk, int blocks, int treats, int spinners, int chicken) {
-            super(petType, petName, health, happiness, fullness, sleep, balls, fish, bears, milk, blocks, treats, spinners, chicken);  // Call the parent constructor
+        public getPetStats(String petType, String petName, int health, int happiness, int fullness, int sleep, int balls, int fish, int bears, int milk, int blocks, int treats, int spinners, int chicken, int score) {
+            super(petType, petName, health, happiness, fullness, sleep, balls, fish, bears, milk, blocks, treats, spinners, chicken, score);  // Call the parent constructor
         }
     
         // Getter methods for the Pet stats
@@ -54,6 +54,9 @@ public class getPetStats extends pet {
     }
     public static String getChicken() {
         return pet.getChicken();
+    }
+    public static String getScore() {
+        return pet.getScore();
     }
     
 }

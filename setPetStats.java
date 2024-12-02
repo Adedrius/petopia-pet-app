@@ -2,7 +2,7 @@ public class setPetStats extends pet {
     
     // Constructor that takes a Pet object
     public setPetStats(String petType, String petName, int health, int happiness, int fullness, int sleep, int balls, int fish, int bears, int milk, int blocks, int treats, int spinners, int chicken) {
-        super(petType, petName, health, happiness, fullness, sleep, balls, fish, bears, milk, blocks, treats, spinners, chicken);  // Call the parent constructor
+        super(petType, petName, health, happiness, fullness, sleep, balls, fish, bears, milk, blocks, treats, spinners, chicken, score);  // Call the parent constructor
     }
 
     // Setter methods for the Pet stats (non-static)
@@ -60,5 +60,8 @@ public class setPetStats extends pet {
 
     public void setChicken(int chicken) {
         super.setChicken(chicken);
+    }
+    public void setScore(int score) {
+        super.setScore(score);
     }
 }

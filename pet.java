@@ -22,8 +22,11 @@ public class pet extends JFrame {
         public static int treats = 5;
         public static int spinners = 5;
         public static int chicken = 5;
+        public static int score = 0;
             
                 private Timer timer;  // Timer to decrease stats over time
+                public static long startTime = System.nanoTime();
+
         
                 //pet mood states
                 private boolean isAlive;
@@ -41,7 +44,7 @@ public class pet extends JFrame {
                 private JButton mainMenuButton;
                 private JButton inventoryButton;
             
-                public pet(String petType, String petName, int health, int happiness, int fullness, int sleep, int balls, int fish, int bears, int milk, int blocks, int treats, int spinners, int chicken) {
+                public pet(String petType, String petName, int health, int happiness, int fullness, int sleep, int balls, int fish, int bears, int milk, int blocks, int treats, int spinners, int chicken, int score) {
                     this.petType = petType;
                     this.petName = petName;
                     this.health = health;
@@ -56,6 +59,7 @@ public class pet extends JFrame {
                     this.treats = treats;
                     this.spinners = spinners;
                     this.chicken = chicken;
+                    this.score = score;
 
                     pet.petType = petType;
                     pet.petName = petName;
@@ -198,6 +202,7 @@ fullness = Math.min(fullness + 10, 100);
                 // Method to feed the pet
                 private void feedPet() {
                     // Increase fullness when pet is fed (but don't exceed 100)
+                    score += 1;
                     fullness = Math.min(fullness + 20, 100);
                     try {
                         backgroundImage = ImageIO.read(new File("images/background.png"));
@@ -234,6 +239,7 @@ fullness = Math.min(fullness + 10, 100);
             
                 // Method to play with pet (increase happiness by 10)
                 private void playWithPet() {
+                    score += 2;
                     happiness = Math.min(happiness + 10, 100);  // Increase happiness but don't exceed 100
                     try {
                         backgroundImage = ImageIO.read(new File("images/background.png"));
@@ -247,6 +253,7 @@ fullness = Math.min(fullness + 10, 100);
             
                 // Method to bring pet to vet (increase health by 20)
                 private void bringToVet() {
+                    score = Math.max(score - 1, 0);
                     health = Math.min(health + 20, 100);  // Increase health but don't exceed 100
                     try {
                         backgroundImage = ImageIO.read(new File("images/background.png"));
@@ -291,7 +298,7 @@ fullness = Math.min(fullness + 10, 100);
                 }
             
                 // // Draw the pet's stats AFTER images to ensure they appear on top
-                 g.setColor(Color.WHITE);
+                 g.setColor(Color.BLACK);
                  g.setFont(new Font("Arial", Font.PLAIN, 20));
                  int yPos = getHeight() - 40;  // Start position for stats text (a bit above the bottom)
                 // // Display each stat one after the other
@@ -316,6 +323,7 @@ fullness = Math.min(fullness + 10, 100);
                  g.drawString("Happiness: " + happiness, 220, yPos);
                  g.drawString("Fullness: " + fullness, 420, yPos);
                  g.drawString("Sleep: " + sleep, 620, yPos);
+                 g.drawString("Score: " + score, 650, yPos - 300);
             }
                
             }
@@ -366,6 +374,9 @@ fullness = Math.min(fullness + 10, 100);
             }  
             public static String getChicken() {
                 return Integer.toString(chicken); 
+            }
+            public static String getScore() {
+                return Integer.toString(score); 
             }
 
            // Setters
@@ -424,11 +435,14 @@ public void setSpinners(int newSpinners) {
 public void setChicken(int newChicken) {
     chicken = newChicken;
 }
+public void setScore(int newScore) {
+    score = newScore;
+}
 
     
         public static void main(String[] args) {
             // Display the pet screen for a "cat" as an example
-            pet pet = new pet(petType, petName, 100, 100, 100, 100, 5, 5, 5, 5, 5, 5, 5, 5);
+            pet pet = new pet(petType, petName, 100, 100, 100, 100, 5, 5, 5, 5, 5, 5, 5, 5, 0);
         pet.setVisible(true);
     }
 

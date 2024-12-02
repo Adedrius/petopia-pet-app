@@ -102,8 +102,8 @@ public class saveGame {
       + getPetStats.getBlocks() + "," 
       + getPetStats.getTreats() + "," 
       + getPetStats.getSpinners() + "," 
-      + getPetStats.getChicken(); // balls, fish, bears, milk, blocks, treats, spinners, chicken
-
+      + getPetStats.getChicken() + "," // balls, fish, bears, milk, blocks, treats, spinners, chicken
+      + getPetStats.getScore();
       writer.write(petStatData);
       writer.close();
       JFrame frame = new JFrame("Save Game");

@@ -161,6 +161,14 @@ public class pet extends JFrame {
                 // Method to update stats over time
                 private void updateStats() {
                     // Decrease stats over time
+                    try {
+                        backgroundImage = ImageIO.read(new File("images/background.png"));
+                       
+                        petImage = ImageIO.read(new File("sprites/" + petType + "_normal.png"));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        System.out.println("Error loading image.");
+                    }
                     if (health > 0) {
                         isAlive = true;                    }
                     if (happiness > 0) {

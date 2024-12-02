@@ -29,9 +29,9 @@ public class loadGame {
         saveSlot1.setBounds(195, 75, 100, 60); // x, y, width, height
         frame.add(saveSlot1);
         saveSlot1.addActionListener(e -> {
+            frame.dispose();
             try {
               loadPlayerData("1");
-              frame.dispose();
             } catch (Exception e1) {
               // TODO Auto-generated catch block
               e1.printStackTrace();
@@ -42,8 +42,8 @@ public class loadGame {
         saveSlot2.setBounds(195, 150, 100, 60); // x, y, width, height
         frame.add(saveSlot2);
         saveSlot2.addActionListener(e -> {
+            frame.dispose();
             try {
-                frame.dispose();
               loadPlayerData("2");
             } catch (Exception e1) {
               // TODO Auto-generated catch block
@@ -55,6 +55,7 @@ public class loadGame {
         saveSlot3.setBounds(195, 225, 100, 60); // x, y, width, height
         frame.add(saveSlot3);
         saveSlot3.addActionListener(e -> {
+            frame.dispose();
             try {
               loadPlayerData("3");
               frame.dispose();
@@ -93,18 +94,28 @@ public class loadGame {
       int happiness = Integer.parseInt(values[3]);
       int fullness = Integer.parseInt(values[4]);
       int sleep = Integer.parseInt(values[5]);
+      int balls = Integer.parseInt(values[6]);
+      int fish = Integer.parseInt(values[7]);
+      int bears = Integer.parseInt(values[8]);
+      int milk = Integer.parseInt(values[9]);
+      int blocks = Integer.parseInt(values[10]);
+      int treats = Integer.parseInt(values[11]);
+      int spinners = Integer.parseInt(values[12]);
+      int chicken = Integer.parseInt(values[13]);
+
+
       
-            pet petWindow = new pet(petType, petName, health, happiness, fullness, sleep); // Pass name to pet window
+            pet petWindow = new pet(petType, petName, health, happiness, fullness, sleep, balls, fish, bears, milk, blocks, treats, spinners, chicken); // Pass name to pet window
             petWindow.setVisible(true);
       }
     catch(FileNotFoundException e){
         JFrame frame = new JFrame("Load Game");
-                JOptionPane.showMessageDialog(frame, "Save File not found. Please try again or start a new game.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(frame, "Save File not found. Please try again or start a new game.", "Error Loading Game", JOptionPane.ERROR_MESSAGE);
     e.printStackTrace();
     }
     catch(IOException e){
         JFrame frame = new JFrame("Load Game");
-        JOptionPane.showMessageDialog(frame, "Save File not found. Please try again or start a new game.", "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(frame, "Save File not found. Please try again or start a new game.", "Error Loading Game", JOptionPane.ERROR_MESSAGE);
         e.printStackTrace();
         }
   }

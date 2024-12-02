@@ -9,6 +9,9 @@ public class pet extends JFrame {
         private static String petName;
         private BufferedImage petImage;
         private BufferedImage backgroundImage;
+        private long gameStartTime;
+        private Timer clockTimer; 
+        private String elapsedTime = "00:00";  // Initial clock display
     
         private static int health = 100;
         private static int happiness = 100;

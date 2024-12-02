@@ -22,10 +22,16 @@ public class mainMenu extends JFrame {
         // Set the layout for the window
         setLayout(new BorderLayout());
 
-        // Create the title label
-        JLabel titleLabel = new JLabel("Welcome to Petopia!", JLabel.CENTER);
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 30));
-        add(titleLabel, BorderLayout.NORTH);
+        // Create a panel for the image and ensure it's not stretching
+        JPanel imagePanel = new JPanel();
+        imagePanel.setLayout(new BorderLayout());
+        JLabel imageLabel = new JLabel(new ImageIcon("images/title.png"));
+        imageLabel.setHorizontalAlignment(JLabel.CENTER);
+        imagePanel.add(imageLabel, BorderLayout.CENTER);
+
+        // Add the image panel to the top
+        add(imagePanel, BorderLayout.NORTH);
+
 
         // Create a panel for the buttons
         JPanel buttonPanel = new JPanel();

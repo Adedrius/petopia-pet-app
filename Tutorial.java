@@ -41,7 +41,7 @@ public class Tutorial extends JFrame {
           - Take them to the vet if they're feeling sick.
 
         - 🛒 **Check Your Inventory**:
-          Keep track of your items like food, toys, and treats!
+          Manage your items wisely! Different foods, toys, and treats have unique effects on your pet's stats. Choose carefully to keep your pet happy and healthy!
 
         - 🌟 **Stay Alert**:
           Watch your pet's stats (Health, Happiness, Fullness, and Sleep). If they reach zero, your pet might get sad!

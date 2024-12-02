@@ -18,14 +18,6 @@ public class pet extends JFrame {
         private static int happiness = 100;
         private static int fullness = 100;
         private static int sleep = 100;
-        public static int balls = 5;
-        public static int fish = 5;
-        public static int bears = 5;
-        public static int milk = 5;
-        public static int blocks = 5;
-        public static int treats = 5;
-        public static int spinners = 5;
-        public static int chicken = 5;
         public static int score = 0;
            
                 private Timer timer;  // Timer to decrease stats over time
@@ -50,21 +42,13 @@ public class pet extends JFrame {
                 private JButton inventoryButton;
                 private JButton exerciseButton;
            
-                public pet(String petType, String petName, int health, int happiness, int fullness, int sleep, int balls, int fish, int bears, int milk, int blocks, int treats, int spinners, int chicken, int score) {
+                public pet(String petType, String petName, int health, int happiness, int fullness, int sleep, int score) {
                     this.petType = petType;
                     this.petName = petName;
                     this.health = health;
                     this.happiness = happiness;
                     this.fullness = fullness;
                     this.sleep = sleep;
-                    this.balls = balls;
-                    this.fish = fish;
-                    this.bears = bears;
-                    this.milk = milk;
-                    this.blocks = blocks;
-                    this.treats = treats;
-                    this.spinners = spinners;
-                    this.chicken = chicken;
                     this.score = score;
 
 
@@ -383,30 +367,6 @@ public class pet extends JFrame {
             public static String getSleep() {
                 return Integer.toString(sleep);
             }
-            public static String getBalls() {
-                return Integer.toString(balls);
-            }  
-            public static String getFish() {
-                return Integer.toString(fish);
-            }  
-            public static String getBears() {
-                return Integer.toString(bears);
-            }  
-            public static String getMilk() {
-                return Integer.toString(milk);
-            }  
-            public static String getBlocks() {
-                return Integer.toString(blocks);
-            }  
-            public static String getTreats() {
-                return Integer.toString(treats);
-            }  
-            public static String getSpinners() {
-                return Integer.toString(spinners);
-            }  
-            public static String getChicken() {
-                return Integer.toString(chicken);
-            }
             public static String getScore() {
                 return Integer.toString(score);
             }
@@ -415,91 +375,42 @@ public class pet extends JFrame {
                 happiness = Math.min(newHappiness, 100); // Limit to 100
             }
 
-
             public static int getHappinessValue() {
                 return happiness; // Return happiness as an integer
             }
-
 
             public static void setFullnessValue(int newFullness) {
                 fullness = Math.min(newFullness, 100); // Limit to 100
             }
 
-
             public static int getFullnessValue() {
                 return fullness; // Return happiness as an integer
             }
-
-
            // Setters
 public void setPetType(String newPetType) {
     petType = newPetType;
 }
 
-
 public void setPetName(String newPetName) {
     petName = newPetName;
 }
-
 
 public void setHealth(int newHealth) {
     health = newHealth;
 }
 
-
 public void setHappiness(int newHappiness) {
     happiness = newHappiness;
 }
-
 
 public void setFullness(int newFullness) {
     fullness = newFullness;
 }
 
-
 public void setSleep(int newSleep) {
     sleep = newSleep;
 }
 
-
-public void setBalls(int newBalls) {
-    balls = newBalls;
-}
-
-
-public void setFish(int newFish) {
-    fish = newFish;
-}
-
-
-public void setBears(int newBears) {
-    bears = newBears;
-}
-
-
-public void setMilk(int newMilk) {
-    milk = newMilk;
-}
-
-
-public void setBlocks(int newBlocks) {
-    blocks = newBlocks;
-}
-
-
-public void setTreats(int newTreats) {
-    treats = newTreats;
-}
-
-
-public void setSpinners(int newSpinners) {
-    spinners = newSpinners;
-}
-
-
-public void setChicken(int newChicken) {
-    chicken = newChicken;
-}
 public void setScore(int newScore) {
     score = newScore;
 }
@@ -508,7 +419,7 @@ public void setScore(int newScore) {
    
         public static void main(String[] args) {
             // Display the pet screen for a "cat" as an example
-            pet pet = new pet(petType, petName, 100, 100, 100, 100, 5, 5, 5, 5, 5, 5, 5, 5, 0);
+            pet pet = new pet(petType, petName, 100, 100, 100, 100, 0);
         pet.setVisible(true);
     }
 

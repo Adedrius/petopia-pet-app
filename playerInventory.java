@@ -5,12 +5,12 @@ import java.awt.*;
 public class playerInventory {
     public static int balls = 5;
     public static int fish = 5;
-    public static int bears = 5;
-    public static int milk = 5;
-    public static int blocks = 5;
-    public static int treats = 5;
-    public static int spinners = 5;
-    public static int chicken = 5;
+    public static int bears = 4;
+    public static int milk = 4;
+    public static int blocks = 3;
+    public static int treats = 3;
+    public static int spinners = 2;
+    public static int chicken = 2;
     private JButton backtoGame;
     public static void showWindow() {
 
@@ -73,7 +73,7 @@ public class playerInventory {
         fishButton.addActionListener(e -> {
             if (getFish() > 0) {
                 setFish(getFish() - 1);
-                pet.setFullnessValue((pet.getFullnessValue() + 10)); // Add 10 to fullness
+                pet.setFullnessValue((pet.getFullnessValue() + 5)); // Add 5 to fullness
                 fishRemLabel.setText(" Fish Remaining: " + getFish());
                 System.out.println("Fish used! Remaining fish: " + getFish());
                 System.out.println("Pet fullness: " + pet.getFullnessValue());
@@ -106,7 +106,7 @@ public class playerInventory {
         ballButton.addActionListener(e -> {
             if (getBalls() > 0) {
                 setBalls(getBalls() - 1);
-                pet.setHappinessValue((pet.getHappinessValue() + 8)); // Add 8 to happiness
+                pet.setHappinessValue((pet.getHappinessValue() + 5)); // Add 5 to happiness
                 ballRemLabel.setText(" Balls Remaining: " + getBalls());
                 System.out.println("Ball used! Remaining balls: " + getBalls());
                 System.out.println("Pet happiness: " + pet.getHappinessValue());
@@ -138,7 +138,7 @@ public class playerInventory {
         milkButton.addActionListener(e -> {
             if (getMilk() > 0) {
                 setMilk(getMilk() - 1);
-                pet.setFullnessValue((pet.getFullnessValue() + 8)); // Add 8 to fullness
+                pet.setFullnessValue((pet.getFullnessValue() + 10)); // Add 10 to fullness
                 milkRemLabel.setText(" Milk Remaining: " + getMilk());
                 System.out.println("Milk used! Remaining milk: " + getMilk());
                 System.out.println("Pet fullness: " + pet.getFullnessValue());
@@ -170,7 +170,7 @@ public class playerInventory {
         bearButton.addActionListener(e -> {
             if (getBears() > 0) {
                 setBears(getBears() - 1);
-                pet.setHappinessValue((pet.getHappinessValue() + 15)); // Add 15 to happiness
+                pet.setHappinessValue((pet.getHappinessValue() + 10)); // Add 10 to happiness
                 bearRemLabel.setText(" Bears Remaining: " + getBears());
                 System.out.println("Bear used! Remaining bears: " + getBears());
                 System.out.println("Pet happiness: " + pet.getHappinessValue());
@@ -206,7 +206,7 @@ public class playerInventory {
                 setTreats(getTreats() - 1);
        
                 // Update pet's happiness
-                pet.setFullnessValue((pet.getFullnessValue() + 5)); // Add 5 to fullness (example value)
+                pet.setFullnessValue((pet.getFullnessValue() + 15)); // Add 15 to fullness (example value)
        
                 // Refresh treats label
                 treatsRemLabel.setText(" Treats Remaining: " + getTreats());
@@ -244,7 +244,7 @@ public class playerInventory {
                 setBlocks(getBlocks() - 1);
        
                 // Update pet's happiness
-                pet.setHappinessValue((pet.getHappinessValue() + 10)); // Add 10 to happiness (example value)
+                pet.setHappinessValue((pet.getHappinessValue() + 15)); // Add 15 to happiness (example value)
        
                 // Refresh block label
                 blockRemLabel.setText(" Blocks Remaining: " + getBlocks());
@@ -280,7 +280,7 @@ public class playerInventory {
         chickenButton.addActionListener(e -> {
             if (getChicken() > 0) {
                 setChicken(getChicken() - 1);
-                pet.setFullnessValue((pet.getFullnessValue() + 12)); // Add 12 to fullness
+                pet.setFullnessValue((pet.getFullnessValue() + 20)); // Add 20 to fullness
                 chickenRemLabel.setText(" Chicken Remaining: " + getChicken());
                 System.out.println("Chicken used! Remaining chicken: " + getChicken());
                 System.out.println("Pet fullness: " + pet.getFullnessValue());
@@ -411,8 +411,6 @@ public class playerInventory {
 
     public static int getBlocks() {
         return blocks;
-
-
     }
 
 
@@ -447,8 +445,6 @@ public class playerInventory {
 
     public static int getChicken() {
         return chicken;
-
-
     }
 
 
@@ -458,7 +454,6 @@ public class playerInventory {
 
 
     public static void main(String[] args) {
-        setBlocks(5); // Example of setting a value from another class
         showWindow();
     }
 }

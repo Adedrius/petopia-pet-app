@@ -3,72 +3,84 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * This class is the mainMenu class and it provides the primary user interface for the Petopia virtual pet game.
+ * It includes options to start a new game, load an existing game, view a tutorial, access parental controls,
+ * and exit the application.
+ *
+ * <p>This class also includes a splash screen implementation to display an introductory animation
+ * before the main menu launches.</p>
+ * 
+ * @author Team 34
+ * @version 1.0
+ * @since 2024-12-03
+ */
 public class mainMenu extends JFrame {
 
-    // Constructor to set up the main menu window
+    /**
+     * This constructs the main menu window with buttons for various actions and developer information.
+     * It sets up the layout, buttons, and event listeners.
+     */
     public mainMenu() {
-        // Set the window title
+        // this sets the window title
         setTitle("Petopia - Virtual Pet Game");
 
-        // Set the default close operation
+        // this sets the default close operation
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // Set the window size
+        // this sets the window size
         setSize(800, 600);
 
-        // Center the window on the screen
+        // this centers the window on the screen
         setLocationRelativeTo(null);
 
-        // Set the layout for the window
+        // this sets the layout for the window
         setLayout(new BorderLayout());
 
-        // Create a panel for the image and ensure it's not stretching
-        JPanel imagePanel = new JPanel();
-        imagePanel.setLayout(new BorderLayout());
+        // this creates a panel for the title image
+        JPanel imagePanel = new JPanel(new BorderLayout());
         JLabel imageLabel = new JLabel(new ImageIcon("images/title.png"));
         imageLabel.setHorizontalAlignment(JLabel.CENTER);
         imagePanel.add(imageLabel, BorderLayout.CENTER);
 
-        // Add the image panel to the top
+        // this adds an image panel to the top
         add(imagePanel, BorderLayout.NORTH);
 
+        // this creates a panel for the menu buttons
+        JPanel buttonPanel = new JPanel(new GridLayout(5, 1, 10, 10));
 
-        // Create a panel for the buttons
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(5, 1, 10, 10));
-
-        // Create buttons for each menu option
+        // this creates buttons for each menu option
         JButton startGameButton = new JButton("Start New Game");
         JButton loadGameButton = new JButton("Load Game");
         JButton tutorialButton = new JButton("Tutorial / Instructions");
         JButton parentalControlsButton = new JButton("Parental Controls");
         JButton exitButton = new JButton("Exit");
 
-        // Add buttons to the panel
+        // this adds buttons to the panel
         buttonPanel.add(startGameButton);
         buttonPanel.add(loadGameButton);
         buttonPanel.add(tutorialButton);
         buttonPanel.add(parentalControlsButton);
         buttonPanel.add(exitButton);
 
-        // Add the button panel to the center of the window
+        // this adds the button panel to the center
         add(buttonPanel, BorderLayout.CENTER);
 
-        // Create a panel for developer information
+        // this creates a panel for developer information
         JPanel infoPanel = new JPanel(new GridLayout(3, 1));
         JLabel teamLabel = new JLabel("Developers: Team 34", JLabel.CENTER);
         JLabel namesLabel = new JLabel("Thevindu, Isabella, Keith, Hassan, Ade", JLabel.CENTER);
         JLabel termLabel = new JLabel("Fall 2024 - CS2212 at Western University", JLabel.CENTER);
 
-        // Add info to the panel
+        // this adds developer info to the panel
         infoPanel.add(teamLabel);
         infoPanel.add(namesLabel);
         infoPanel.add(termLabel);
 
-        // Add info panel to the bottom of the window
+        // this adds the info panel to the bottom
         add(infoPanel, BorderLayout.SOUTH);
 
-        // Event listeners for buttons
+        // this sets up event listeners for each button
         startGameButton.addActionListener(e -> {
             startGame StartGame = new startGame();
             StartGame.showWindow();
@@ -79,7 +91,7 @@ public class mainMenu extends JFrame {
             loadGame.showWindow();
         });
 
-        tutorialButton.addActionListener( e -> {
+        tutorialButton.addActionListener(e -> {
             Tutorial tutorial = new Tutorial();
             tutorial.showWindow();
         });
@@ -89,28 +101,26 @@ public class mainMenu extends JFrame {
             parentalControls.showWindow();
         });
 
-        exitButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Exit the application
-                System.exit(0);
-            }
-        });
+        exitButton.addActionListener(e -> System.exit(0)); // Exit the application
     }
 
-    // Splash Screen Implementation
+    /**
+     * This displays the splash screen with an introductory animation and background music.
+     * Once the animation completes, the main menu is launched.
+     *
+     * @param onComplete a Runnable to execute when the splash screen animation is finished
+     */
     public static void showSplashScreen(Runnable onComplete) {
         JFrame splashScreen = new JFrame();
         splashScreen.setUndecorated(true);
         splashScreen.setSize(800, 600);
         splashScreen.setLocationRelativeTo(null);
 
-        // Add image to the splash screen
+        // this adds an image to the splash screen
         JLabel splashImage = new JLabel(new ImageIcon("images/title.png"));
         splashImage.setHorizontalAlignment(JLabel.CENTER);
         splashScreen.add(splashImage);
 
-        // Set opacity control
         splashScreen.setOpacity(1.0f);
         splashScreen.setVisible(true);
 
@@ -123,7 +133,7 @@ public class mainMenu extends JFrame {
                 if (opacity <= 0.0f) {
                     splashScreen.dispose();
                     ((Timer) e.getSource()).stop();
-                    onComplete.run(); // Launch the main menu
+                    onComplete.run(); // this launches the main menu
                 } else {
                     splashScreen.setOpacity(opacity);
                 }
@@ -136,12 +146,17 @@ public class mainMenu extends JFrame {
         sound.playSong();
     }
 
-    // Main method to launch the main menu
+    /**
+     * This is the main method that serves as the 'entry point' for the application.
+     * It first displays the splash screen and then launches the main menu.
+     *
+     * @param args command-line arguments (not used)
+     */
     public static void main(String[] args) {
-        // Create the main menu and make it visible
         showSplashScreen(() -> {
             mainMenu mainMenu = new mainMenu();
             mainMenu.setVisible(true);
         });
     }
 }
+

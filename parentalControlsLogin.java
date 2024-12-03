@@ -1,66 +1,82 @@
 import java.awt.Font;
 import javax.swing.*;
 
+/**
+ * This class is the parentalControlsLogin class that provides a graphical user interface for
+ * authenticating access to the parental controls menu using a PIN.
+ *
+ * <p>This class validates the user's PIN input and redirects to the Parental Controls Menu upon successful login.</p>
+ * 
+ * @author Team 34
+ * @version 1.0
+ * @since 2024-12-03
+ */
 public class parentalControlsLogin {
-  public static void showWindow() {
-    String passwordString = "123";
-    // Create a new JFrame
-    JFrame frame = new JFrame("Parental Controls Login");
-    // Set the size of the frame
-    frame.setSize(500, 400); // Width: 600px, Height: 600px
-    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Change to DISPOSE_ON_CLOSE
-    frame.setLocationRelativeTo(null);
-    frame.setLayout(null);
 
-    JLabel pageTitle = new JLabel("Parental Controls Login");
-    pageTitle.setBounds(140, 25, 225, 30); // x, y, width, height
-    pageTitle.setFont(new Font("Arial", Font.PLAIN, 20));
-    pageTitle.setOpaque(false);
-    pageTitle.setBorder(null);
-    frame.add(pageTitle);
+    /**
+     * This displays the Parental Controls Login window, allowing the user to enter a PIN
+     * to access the parental controls menu.
+     */
+    public static void showWindow() {
+        String passwordString = "123"; // This is the PIN for authentication
 
-    JLabel pinEntry = new JLabel("Enter PIN :");
-    pinEntry.setBounds(170, 90, 75, 30); // x, y, width, height
-    frame.add(pinEntry);
+        // This creates a new JFrame
+        JFrame frame = new JFrame("Parental Controls Login");
+        frame.setSize(500, 400); // This sets the size of the frame
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // This closes the frame only
+        frame.setLocationRelativeTo(null); // This centers the frame on the screen
+        frame.setLayout(null);
 
-    JPasswordField pin = new JPasswordField();
-    pin.setBounds(235, 90, 75, 30); // x, y, width, height
-    frame.add(pin);
+        // This adds a title to the frame
+        JLabel pageTitle = new JLabel("Parental Controls Login");
+        pageTitle.setBounds(140, 25, 225, 30);
+        pageTitle.setFont(new Font("Arial", Font.PLAIN, 20));
+        frame.add(pageTitle);
 
-    JButton loginButton = new JButton("Login");
-    loginButton.setBounds(208, 135, 67, 30); // x, y, width, height
-    frame.add(loginButton);
+        // This is a label and input field for the PIN entry
+        JLabel pinEntry = new JLabel("Enter PIN:");
+        pinEntry.setBounds(170, 90, 75, 30);
+        frame.add(pinEntry);
 
-    JButton mainMenu = new JButton("Main Menu");
-    mainMenu.setBounds(165, 290, 150, 30); // x, y, width, height
-    frame.add(mainMenu);
+        JPasswordField pin = new JPasswordField();
+        pin.setBounds(235, 90, 75, 30);
+        frame.add(pin);
 
-    // Action listener to close the parental controls login window and return to the main menu
-    mainMenu.addActionListener(e -> frame.dispose()); // Close the frame when "Main Menu" is clicked
+        // This makes the login button
+        JButton loginButton = new JButton("Login");
+        loginButton.setBounds(208, 135, 67, 30);
+        frame.add(loginButton);
 
-    // Action listener to validate PIN and open the Parental Controls Menu window
-    loginButton.addActionListener(e -> {
-      char[] enteredPin = pin.getPassword(); // Get the entered PIN
-      String pinString = new String(enteredPin); // Convert to String
+        // This makes the Main Menu button
+        JButton mainMenu = new JButton("Main Menu");
+        mainMenu.setBounds(165, 290, 150, 30);
+        frame.add(mainMenu);
 
-      // Check if the entered PIN is correct
-      if (pinString.equals(passwordString)) {
-        // Open the parental controls menu window
-        frame.dispose(); // Close the current login window
-        parentalControlsMenu.showWindow(); // Open the parental controls menu window
-      } else {
-        JOptionPane.showMessageDialog(frame, "Incorrect PIN, please try again.", "Error", JOptionPane.ERROR_MESSAGE);
-      }
-    });
+        mainMenu.addActionListener(e -> frame.dispose()); // this closes the frame when "Main Menu" is clicked
 
-    // Set the frame's visibility
-    frame.setVisible(true);
+        loginButton.addActionListener(e -> {
+            char[] enteredPin = pin.getPassword(); // This gets the entered PIN
+            String pinString = new String(enteredPin); // this converts the character array to a String
 
-    // Optionally, center the frame on the screen
-    frame.setLocationRelativeTo(null);
-  }
+            // This checks if the entered PIN is correct
+            if (pinString.equals(passwordString)) {
+                frame.dispose(); // This closes the current login window
+                parentalControlsMenu.showWindow(); // This opens the parental controls menu
+            } else {
+                JOptionPane.showMessageDialog(frame, "Incorrect PIN, please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        });
 
-  public static void main(String[] args) {
-    showWindow();
-  }
+        // This sets the frame's visibility
+        frame.setVisible(true);
+    }
+
+    /**
+     * This is the main method that serves as an 'entry point' to launch the Parental Controls Login window.
+     *
+     * @param args command-line arguments (not used)
+     */
+    public static void main(String[] args) {
+        showWindow();
+    }
 }

@@ -1,126 +1,144 @@
 import java.awt.*;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-
-import javax.annotation.processing.FilerException;
 import javax.swing.*;
 
+/**
+ * This class is the loadGame class which provides functionality for loading saved game data
+ * from predefined save slots and displaying the game's progress in the game.
+ *
+ * <p>This class allows users to load game states stored in CSV files and initializes the 
+ * Petopia gameplay window with the loaded data.</p>
+ * 
+ * @author group 34
+ * @version 1.0
+ * @since 2024-12-03
+ */
 public class loadGame {
+
+    /**
+     * This displays the Load Game menu, which allows users to select a save slot or return to the main menu.
+     * Each save slot corresponds to a file from which game data can be loaded.
+     */
     public static void showWindow() {
-        // Create a new JFrame
+        // this creates a new JFrame
         JFrame frame = new JFrame("Load Game");
-        // Set the size of the frame
-        frame.setSize(500, 400); // Width: 600px, Height: 600px
-        frame.setLocationRelativeTo(null); // Center the frame on the screen
+        frame.setSize(500, 400); // This sets the width to 500px and the Height to 400px
+        frame.setLocationRelativeTo(null); // this centers the frame on the screen
         frame.setLayout(null);
 
+        // this adds a page title
         JLabel pageTitle = new JLabel("Load Game");
-        pageTitle.setBounds(193, 25, 225, 30); // x, y, width, height
+        pageTitle.setBounds(193, 25, 225, 30);
         pageTitle.setFont(new Font("Arial", Font.PLAIN, 20));
-        pageTitle.setOpaque(false);
-        pageTitle.setBorder(null);
         frame.add(pageTitle);
 
+        // this adds buttons for each save slot
         JButton saveSlot1 = new JButton("Save Slot 1");
-        saveSlot1.setBounds(195, 75, 100, 60); // x, y, width, height
+        saveSlot1.setBounds(195, 75, 100, 60);
         frame.add(saveSlot1);
         saveSlot1.addActionListener(e -> {
             frame.dispose();
             try {
-              loadPlayerData("1");
+                loadPlayerData("1");
             } catch (Exception e1) {
-              // TODO Auto-generated catch block
-              e1.printStackTrace();
+                e1.printStackTrace();
             }
-          });
+        });
 
         JButton saveSlot2 = new JButton("Save Slot 2");
-        saveSlot2.setBounds(195, 150, 100, 60); // x, y, width, height
+        saveSlot2.setBounds(195, 150, 100, 60);
         frame.add(saveSlot2);
         saveSlot2.addActionListener(e -> {
             frame.dispose();
             try {
-              loadPlayerData("2");
+                loadPlayerData("2");
             } catch (Exception e1) {
-              // TODO Auto-generated catch block
-              e1.printStackTrace();
+                e1.printStackTrace();
             }
-          });
+        });
 
         JButton saveSlot3 = new JButton("Save Slot 3");
-        saveSlot3.setBounds(195, 225, 100, 60); // x, y, width, height
+        saveSlot3.setBounds(195, 225, 100, 60);
         frame.add(saveSlot3);
         saveSlot3.addActionListener(e -> {
             frame.dispose();
             try {
-              loadPlayerData("3");
-              frame.dispose();
+                loadPlayerData("3");
             } catch (Exception e1) {
-              // TODO Auto-generated catch block
-              e1.printStackTrace();
+                e1.printStackTrace();
             }
-          });
+        });
 
+        // this adds a Main Menu button
         JButton mainMenu = new JButton("Main Menu");
-        mainMenu.setBounds(170, 305, 150, 30); // x, y, width, height
+        mainMenu.setBounds(170, 305, 150, 30);
         frame.add(mainMenu);
+        mainMenu.addActionListener(e -> frame.dispose()); // this returns you to the main menu by closing the frame
 
-        // Action listener to close the load game window and return to the main menu
-        mainMenu.addActionListener(e -> frame.dispose()); // Close the frame when "Main Menu" is clicked
-
-        // Override the default close operation to close the frame (not the entire application)
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // This will close the window instead of the application
-
-        // Set the frame's visibility
-        frame.setVisible(true);
+        // this sets the default close operation
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // this closes the window without exiting the application
+        frame.setVisible(true); // after, this displays the frame
     }
-     public static void loadPlayerData(String saveSlot ) throws Exception { //read from savefile and load game
-        String path =  "saveSlot" + saveSlot + ".csv";
+
+    /**
+     * This loads player data from the specified save slot file and initializes the game window
+     * with the loaded data.
+     * 
+     * @param saveSlot the save slot number (e.g., "1", "2", or "3") to load game data from
+     * @throws Exception if an error occurs during file reading
+     */
+    public static void loadPlayerData(String saveSlot) throws Exception {
+        String path = "saveSlot" + saveSlot + ".csv";
         String line = "";
-    try{
-       BufferedReader br = new BufferedReader(new FileReader(path));
-       String[] values = {""};
-      // type name health happiness full sleep
-      while((line = br.readLine()) != null){
-        values = line.split(",");
-      }
-      String petType = values[0];
-      String petName = values[1];
-      int health = Integer.parseInt(values[2]);
-      int happiness = Integer.parseInt(values[3]);
-      int fullness = Integer.parseInt(values[4]);
-      int sleep = Integer.parseInt(values[5]);
-      int balls = Integer.parseInt(values[6]);
-      int fish = Integer.parseInt(values[7]);
-      int bears = Integer.parseInt(values[8]);
-      int milk = Integer.parseInt(values[9]);
-      int blocks = Integer.parseInt(values[10]);
-      int treats = Integer.parseInt(values[11]);
-      int spinners = Integer.parseInt(values[12]);
-      int chicken = Integer.parseInt(values[13]);
-      int score = Integer.parseInt(values[14]);
 
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(path));
+            String[] values = {""};
 
-      
-            pet petWindow = new pet(petType, petName, health, happiness, fullness, sleep, balls, fish, bears, milk, blocks, treats, spinners, chicken, score); // Pass name to pet window
+            // this reads and parses the save file
+            while ((line = br.readLine()) != null) {
+                values = line.split(",");
+            }
+
+            // this extracts the pet stats from the parsed data
+            String petType = values[0];
+            String petName = values[1];
+            int health = Integer.parseInt(values[2]);
+            int happiness = Integer.parseInt(values[3]);
+            int fullness = Integer.parseInt(values[4]);
+            int sleep = Integer.parseInt(values[5]);
+            int balls = Integer.parseInt(values[6]);
+            int fish = Integer.parseInt(values[7]);
+            int bears = Integer.parseInt(values[8]);
+            int milk = Integer.parseInt(values[9]);
+            int blocks = Integer.parseInt(values[10]);
+            int treats = Integer.parseInt(values[11]);
+            int spinners = Integer.parseInt(values[12]);
+            int chicken = Integer.parseInt(values[13]);
+            int score = Integer.parseInt(values[14]);
+
+            // this initializes the pet window with the loaded stats
+            pet petWindow = new pet(petType, petName, health, happiness, fullness, sleep, balls, fish, bears, milk, blocks, treats, spinners, chicken, score);
             petWindow.setVisible(true);
-      }
-    catch(FileNotFoundException e){
-        JFrame frame = new JFrame("Load Game");
-                JOptionPane.showMessageDialog(frame, "Save File not found. Please try again or start a new game.", "Error Loading Game", JOptionPane.ERROR_MESSAGE);
-    e.printStackTrace();
-    }
-    catch(IOException e){
-        JFrame frame = new JFrame("Load Game");
-        JOptionPane.showMessageDialog(frame, "Save File not found. Please try again or start a new game.", "Error Loading Game", JOptionPane.ERROR_MESSAGE);
-        e.printStackTrace();
-        }
-  }
 
+        } catch (FileNotFoundException e) {
+            JOptionPane.showMessageDialog(null, "Save File not found. Please try again or start a new game.", "Error Loading Game", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "An error occurred while loading the save file. Please try again.", "Error Loading Game", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * This is the main method and it serves as the 'entry point' for the Load Game menu.
+     * It displays the Load Game window where users can select a save slot or return to the main menu.
+     *
+     * @param args command-line arguments (not used)
+     */
     public static void main(String[] args) {
         showWindow();
     }

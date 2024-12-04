@@ -20,6 +20,7 @@ public class pet extends JFrame {
     private static String petName;
     private BufferedImage petImage;
     private BufferedImage backgroundImage;
+    private int petPosition = 1;
     private long gameStartTime;
     private Timer clockTimer;
     private String elapsedTime = "00:00"; //this is the initial clock display
@@ -348,8 +349,14 @@ public void paint(Graphics g) {
 
     if (petImage != null) {
         int x = (getWidth() - petImage.getWidth()) / 2;
-        int y = (getHeight() - petImage.getHeight()) / 2;
+        int y = (getHeight() - petImage.getHeight() + (petPosition * 100) - 100) / 2;
         g.drawImage(petImage, x, y, null);
+    }
+    if (petPosition <= 1){
+        petPosition ++;
+    }
+    else {
+        petPosition = 1;
     }
 
     // this draws the pet's stats AFTER images to ensure they appear on top

@@ -173,19 +173,21 @@ private void updateStats() {
     }
     if (happiness > 0) {
         isHappy = true;
-        happiness -= 1; // the pet's happiness decreases naturally over time
+        happiness -= 2; // the pet's happiness decreases naturally over time
     }
-    if (!isFull) { // this applies a health and happiness penalty for starving pet
-        health -= 5;
-        happiness -= 3;
-    }
+  
     if (fullness > 0) {
         isFull = true;
-        fullness -= 1; // the pet's Fullness decreases naturally over time
+        fullness -= 3; // the pet's Fullness decreases naturally over time
     }
     if (sleep > 0 && isAwake) {
         isAwake = true;
-        sleep -= 1; // the pet's sleep decreases if the pet is awake
+        sleep -= 2; // the pet's sleep decreases if the pet is awake
+    }
+
+    if (!isFull) { // this applies a health and happiness penalty for starving pet
+        health -= 5;
+        happiness -= 3;
     }
 
     // this sets the pet's states to false when stats reach zero
@@ -383,6 +385,26 @@ public void paint(Graphics g) {
         g.drawString("Sleep: " + sleep, 620, yPos);
         g.drawString("Score: " + score, 40, yPos - 420);
     }
+    if (health <= 25){ // warning message when pet is low health
+        g.setColor(Color.RED);
+        g.setFont(new Font("Arial", Font.PLAIN, 20));
+        g.drawString("PET IS INJURED", 20, yPos - 50);
+    }
+    if (happiness <= 25){ // warning message when pet is low happiness
+        g.setColor(Color.RED);
+        g.setFont(new Font("Arial", Font.PLAIN, 20));
+        g.drawString("PET IS SAD", 220, yPos - 50);
+    }
+    if (fullness <= 25){ // warning message when pet is low fullness
+        g.setColor(Color.RED);
+        g.setFont(new Font("Arial", Font.PLAIN, 20));
+        g.drawString("PET IS HUNGRY", 420, yPos - 50);
+    }
+    if (sleep <= 25){ // warning message when pet is low sleep
+        g.setColor(Color.RED);
+        g.setFont(new Font("Arial", Font.PLAIN, 20));
+        g.drawString("PET IS TIRED", 620, yPos - 50);
+    } 
 }
 /**
  * This gets the pet's type

@@ -52,6 +52,15 @@ public class startGame extends JFrame {
 
         // When the confirm button is clicked, enable pet selection buttons
         confirmButton.addActionListener(e -> {
+            playerInventory.setBalls(5);
+            playerInventory.setFish(5);
+            playerInventory.setBears(5);
+            playerInventory.setMilk(5);
+            playerInventory.setBlocks(5);
+            playerInventory.setTreats(5);
+            playerInventory.setSpinners(5);
+            playerInventory.setChicken(5);
+
             String petName = petNameField.getText().trim();
             if (!petName.isEmpty()) {
                 // Enable pet selection buttons
@@ -70,21 +79,21 @@ public class startGame extends JFrame {
         // Set action listeners for the pet buttons
         pet1Button.addActionListener(e -> {
             String petName = petNameField.getText().trim();
-            pet petWindow = new pet("cat", petName, 100, 100, 100, 100, 5, 5, 5, 5, 5, 5, 5, 5, 0); // Pass name to pet window
+            pet petWindow = new pet("cat", petName, 100, 100, 100, 100, 5); // Pass name to pet window
             petWindow.setVisible(true);
             frame.dispose(); // Close the pet selection window
         });
 
         pet2Button.addActionListener(e -> {
             String petName = petNameField.getText().trim();
-            pet petWindow = new pet("dog", petName, 100, 100, 100, 100, 5, 5, 5, 5, 5, 5, 5, 5, 0); // Pass name to pet window
+            pet petWindow = new pet("dog", petName, 100, 100, 100, 100, 5); // Pass name to pet window
             petWindow.setVisible(true);
             frame.dispose(); // Close the pet selection window
         });
 
         pet3Button.addActionListener(e -> {
             String petName = petNameField.getText().trim();
-            pet petWindow = new pet("sheep", petName, 100, 100, 100, 100, 5, 5, 5, 5, 5, 5, 5, 5, 0); // Pass name to pet window
+            pet petWindow = new pet("sheep", petName, 100, 100, 100, 100, 5); // Pass name to pet window
             petWindow.setVisible(true);
             frame.dispose(); // Close the pet selection window
         });

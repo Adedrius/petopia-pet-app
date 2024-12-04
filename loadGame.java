@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -120,8 +121,18 @@ public class loadGame {
             int chicken = Integer.parseInt(values[13]);
             int score = Integer.parseInt(values[14]);
 
+            //sets the player inventory
+            playerInventory.setBalls(balls);
+            playerInventory.setFish(fish);
+            playerInventory.setBears(bears);
+            playerInventory.setMilk(milk);
+            playerInventory.setBlocks(blocks);
+            playerInventory.setTreats(treats);
+            playerInventory.setSpinners(spinners);
+            playerInventory.setChicken(chicken);
+
             // this initializes the pet window with the loaded stats
-            pet petWindow = new pet(petType, petName, health, happiness, fullness, sleep, balls, fish, bears, milk, blocks, treats, spinners, chicken, score);
+            pet petWindow = new pet(petType, petName, health, happiness, fullness, sleep, balls);
             petWindow.setVisible(true);
 
         } catch (FileNotFoundException e) {

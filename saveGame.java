@@ -95,14 +95,14 @@ public class saveGame {
       + getPetStats.getHappiness() + "," 
       + getPetStats.getFullness() + "," 
       + getPetStats.getSleep() + "," 
-      + getPetStats.getBalls() + "," 
-      + getPetStats.getFish() + "," 
-      + getPetStats.getBears() + "," 
-      + getPetStats.getMilk() + "," 
-      + getPetStats.getBlocks() + "," 
-      + getPetStats.getTreats() + "," 
-      + getPetStats.getSpinners() + "," 
-      + getPetStats.getChicken() + "," // balls, fish, bears, milk, blocks, treats, spinners, chicken
+      + playerInventory.getBalls() + "," 
+      + playerInventory.getFish() + "," 
+      + playerInventory.getBears() + "," 
+      + playerInventory.getMilk() + "," 
+      + playerInventory.getBlocks() + "," 
+      + playerInventory.getTreats() + "," 
+      + playerInventory.getSpinners() + "," 
+      + playerInventory.getChicken() + "," // balls, fish, bears, milk, blocks, treats, spinners, chicken
       + getPetStats.getScore();
       writer.write(petStatData);
       writer.close();

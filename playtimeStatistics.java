@@ -67,6 +67,7 @@ public class playtimeStatistics {
 
         // this adds an ActionListener to the "Back to Parental Controls" button
         backToParentalControls.addActionListener(e -> {
+            mainMenu.playSound("sounds/button_click.wav");
             frame.dispose(); // this closes the Playtime Statistics window
             parentalControlsMenu.showWindow(); // this opens the Parental Controls menu
         });

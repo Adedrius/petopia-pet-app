@@ -52,6 +52,7 @@ public class startGame extends JFrame {
 
         // When the confirm button is clicked, enable pet selection buttons
         confirmButton.addActionListener(e -> {
+            mainMenu.playSound("sounds/button_click.wav");
             playerInventory.setBalls(5);
             playerInventory.setFish(5);
             playerInventory.setBears(5);
@@ -78,6 +79,7 @@ public class startGame extends JFrame {
 
         // Set action listeners for the pet buttons
         pet1Button.addActionListener(e -> {
+            mainMenu.playSound("sounds/button_click.wav");
             String petName = petNameField.getText().trim();
             pet petWindow = new pet("cat", petName, 100, 100, 100, 100, 5); // Pass name to pet window
             petWindow.setVisible(true);
@@ -85,6 +87,7 @@ public class startGame extends JFrame {
         });
 
         pet2Button.addActionListener(e -> {
+            mainMenu.playSound("sounds/button_click.wav");
             String petName = petNameField.getText().trim();
             pet petWindow = new pet("dog", petName, 100, 100, 100, 100, 5); // Pass name to pet window
             petWindow.setVisible(true);
@@ -92,6 +95,7 @@ public class startGame extends JFrame {
         });
 
         pet3Button.addActionListener(e -> {
+            mainMenu.playSound("sounds/button_click.wav");
             String petName = petNameField.getText().trim();
             pet petWindow = new pet("sheep", petName, 100, 100, 100, 100, 5); // Pass name to pet window
             petWindow.setVisible(true);

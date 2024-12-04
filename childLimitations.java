@@ -55,6 +55,7 @@ public class childLimitations {
         saveSlot1.setBounds(305, 105, 120, 50); //these numbers represent: x, y, width, height respectivley
         frame.add(saveSlot1);
         saveSlot1.addActionListener(e -> {
+            mainMenu.playSound("sounds/button_click.wav");
             try {
                 revivePet("1");
             } catch (Exception e1) {
@@ -66,6 +67,7 @@ public class childLimitations {
         saveSlot2.setBounds(305, 160, 120, 50); //these numbers represent: x, y, width, height respectivley
         frame.add(saveSlot2);
         saveSlot2.addActionListener(e -> {
+            mainMenu.playSound("sounds/button_click.wav");
             try {
                 revivePet("2");
             } catch (Exception e1) {
@@ -77,6 +79,7 @@ public class childLimitations {
         saveSlot3.setBounds(305, 215, 120, 50); //these numbers represent: x, y, width, height respectivley
         frame.add(saveSlot3);
         saveSlot3.addActionListener(e -> {
+            mainMenu.playSound("sounds/button_click.wav");
             try {
                 revivePet("3");
             } catch (Exception e1) {
@@ -91,6 +94,7 @@ public class childLimitations {
 
         // this is an action listener for returning to the parental controls menu
         parentalChanges.addActionListener(e -> {
+            mainMenu.playSound("sounds/button_click.wav");
             frame.dispose(); // this closes the current window
             parentalControlsMenu.showWindow(); // this opens the parental controls menu
         });

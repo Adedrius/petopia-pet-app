@@ -93,20 +93,26 @@ public class pet extends JFrame {
         if (isAlive) {
             saveGameButton = new JButton("Save Game");
             saveGameButton.setBounds(640, 200, 120, 40);
-            saveGameButton.addActionListener(e -> saveGame.showWindow());
+            saveGameButton.addActionListener(e -> {
+                mainMenu.playSound("sounds/button_click.wav");
+                saveGame.showWindow();
+            });
             add(saveGameButton);
 
 
             inventoryButton = new JButton("Inventory"); //create inventory button
             inventoryButton.setBounds(640, 140, 120, 40);  // Set position and size    
-            inventoryButton.addActionListener(e ->
-            playerInventory.showWindow());
+            inventoryButton.addActionListener(e ->{
+                mainMenu.playSound("sounds/button_click.wav");
+            playerInventory.showWindow();
+        });
             System.out.println(inventoryButton); //this logs the button details to the console for debugging purposes
             add(inventoryButton); // this adds the inventory button to the UI
 
             mainMenuButton = new JButton("Main Menu");
             mainMenuButton.setBounds(640, 80, 120, 40);
             mainMenuButton.addActionListener(e -> {
+                mainMenu.playSound("sounds/button_click.wav");
                 dispose();
                 mainMenu backHome = new mainMenu();
                 backHome.setVisible(true);
@@ -117,28 +123,43 @@ public class pet extends JFrame {
                 if (isHappy) {
                     feedButton = new JButton("Feed Pet");
                     feedButton.setBounds(490, 20, 120, 40);
-                    feedButton.addActionListener(e -> feedPet());
+                    feedButton.addActionListener(e -> {
+                        mainMenu.playSound("sounds/button_click.wav");
+                    feedPet();
+                });
                     add(feedButton);
 
                     sleepButton = new JButton("Put pet to sleep");
                     sleepButton.setBounds(10, 20, 150, 40);
-                    sleepButton.addActionListener(e -> putToSleep());
+                    sleepButton.addActionListener(e -> {
+                        mainMenu.playSound("sounds/button_click.wav");
+                        putToSleep();
+                    });
                     add(sleepButton);
 
                     vetButton = new JButton("Bring pet to vet");
                     vetButton.setBounds(330, 20, 150, 40);
-                    vetButton.addActionListener(e -> bringToVet());
+                    vetButton.addActionListener(e -> {
+                        mainMenu.playSound("sounds/button_click.wav");
+                        bringToVet();
+                    });
                     add(vetButton);
 
                     exerciseButton = new JButton("Exercise pet");
                     exerciseButton.setBounds(630, 20, 150, 40);
-                    exerciseButton.addActionListener(e -> exercisePet());
+                    exerciseButton.addActionListener(e -> {
+                        mainMenu.playSound("sounds/button_click.wav");
+                        exercisePet();
+                    });
                     add(exerciseButton);
                 }
 
                 playButton = new JButton("Play with Pet");
                 playButton.setBounds(170, 20, 150, 40);
-                playButton.addActionListener(e -> playWithPet());
+                playButton.addActionListener(e -> {
+                    mainMenu.playSound("sounds/button_click.wav");
+                    playWithPet();
+                });
                 add(playButton);
             }
         }
@@ -374,6 +395,7 @@ public void paint(Graphics g) {
         gameOverButton = new JButton("Main Menu");
         gameOverButton.setBounds(320, 100, 150, 40); // this positions the button
         gameOverButton.addActionListener(e -> {
+            mainMenu.playSound("sounds/button_click.wav");
             this.dispose();
             mainMenu mainMenu = new mainMenu();
         });

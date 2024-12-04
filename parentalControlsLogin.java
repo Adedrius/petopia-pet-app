@@ -48,13 +48,17 @@ public class parentalControlsLogin {
         frame.add(loginButton);
 
         // This makes the Main Menu button
-        JButton mainMenu = new JButton("Main Menu");
-        mainMenu.setBounds(165, 290, 150, 30);
-        frame.add(mainMenu);
+        JButton mainMenuButton = new JButton("Main Menu");
+        mainMenuButton.setBounds(165, 290, 150, 30);
+        frame.add(mainMenuButton);
 
-        mainMenu.addActionListener(e -> frame.dispose()); // this closes the frame when "Main Menu" is clicked
+        mainMenuButton.addActionListener(e -> {
+            mainMenu.playSound("sounds/button_click.wav");
+            frame.dispose();
+        }); // this closes the frame when "Main Menu" is clicked
 
         loginButton.addActionListener(e -> {
+            mainMenu.playSound("sounds/button_click.wav");
             char[] enteredPin = pin.getPassword(); // This gets the entered PIN
             String pinString = new String(enteredPin); // this converts the character array to a String
 

@@ -1,7 +1,11 @@
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 /**
  * This class is the mainMenu class and it provides the primary user interface for the Petopia virtual pet game.
@@ -82,26 +86,33 @@ public class mainMenu extends JFrame {
 
         // this sets up event listeners for each button
         startGameButton.addActionListener(e -> {
+            playSound("sounds/button_click.wav");
             startGame StartGame = new startGame();
             StartGame.showWindow();
         });
 
         loadGameButton.addActionListener(e -> {
+            playSound("sounds/button_click.wav");
             loadGame loadGame = new loadGame();
             loadGame.showWindow();
         });
 
         tutorialButton.addActionListener(e -> {
+            playSound("sounds/button_click.wav");
             Tutorial tutorial = new Tutorial();
             tutorial.showWindow();
         });
 
         parentalControlsButton.addActionListener(e -> {
+            playSound("sounds/button_click.wav");
             parentalControlsLogin parentalControls = new parentalControlsLogin();
             parentalControls.showWindow();
         });
 
-        exitButton.addActionListener(e -> System.exit(0)); // Exit the application
+        exitButton.addActionListener(e -> {
+        playSound("sounds/button_click.wav");
+        System.exit(0);
+    }); // Exit the application
     }
 
     /**
@@ -145,6 +156,22 @@ public class mainMenu extends JFrame {
         backgroundMusic sound = new backgroundMusic();
         sound.playSong();
     }
+
+    public static void playSound(String soundFile)
+ {
+   try 
+   {
+    AudioInputStream foundAudio = AudioSystem.getAudioInputStream(new File(soundFile).getAbsoluteFile());
+    Clip clip = AudioSystem.getClip();
+    clip.open(foundAudio);
+    clip.start();
+   }
+   catch(Exception ex)
+   {
+     System.out.println("Sound file could not be found");
+     ex.printStackTrace( );
+   }
+ }    
 
     /**
      * This is the main method that serves as the 'entry point' for the application.

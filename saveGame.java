@@ -34,6 +34,7 @@ public class saveGame {
     saveSlot1.setBounds(195, 100, 100, 60); // x, y, width, height
     frame.add(saveSlot1);
     saveSlot1.addActionListener(e -> {
+      mainMenu.playSound("sounds/button_click.wav");
       try {
         savePlayerData("1");
       } catch (Exception e1) {
@@ -46,6 +47,7 @@ public class saveGame {
     saveSlot2.setBounds(195, 175, 100, 60); // x, y, width, height
     frame.add(saveSlot2);
     saveSlot2.addActionListener(e -> {
+      mainMenu.playSound("sounds/button_click.wav");
       try {
         savePlayerData("2");
       } catch (Exception e1) {
@@ -58,6 +60,7 @@ public class saveGame {
     saveSlot3.setBounds(195, 250, 100, 60); // x, y, width, height
     frame.add(saveSlot3);
     saveSlot3.addActionListener(e -> {
+      mainMenu.playSound("sounds/button_click.wav");
       try {
         savePlayerData("3");
       } catch (Exception e1) {
@@ -72,8 +75,10 @@ public class saveGame {
     JButton backToGame = new JButton("<-- Back");
     backToGame.setBounds(30, 305, 100, 30); // x, y, width, height
     frame.add(backToGame);
-    backToGame.addActionListener(e -> 
-    frame.dispose()); // Close the frame when "Main Menu" is clicked
+    backToGame.addActionListener(e -> {
+    mainMenu.playSound("sounds/button_click.wav");
+    frame.dispose();
+  }); // Close the frame when "Main Menu" is clicked
 
 
     // Set default close operation (exit the application when the window is closed)

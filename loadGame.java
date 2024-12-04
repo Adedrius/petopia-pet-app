@@ -41,6 +41,7 @@ public class loadGame {
         saveSlot1.setBounds(195, 75, 100, 60);
         frame.add(saveSlot1);
         saveSlot1.addActionListener(e -> {
+            mainMenu.playSound("sounds/button_click.wav");
             frame.dispose();
             try {
                 loadPlayerData("1");
@@ -53,6 +54,7 @@ public class loadGame {
         saveSlot2.setBounds(195, 150, 100, 60);
         frame.add(saveSlot2);
         saveSlot2.addActionListener(e -> {
+            mainMenu.playSound("sounds/button_click.wav");
             frame.dispose();
             try {
                 loadPlayerData("2");
@@ -65,6 +67,7 @@ public class loadGame {
         saveSlot3.setBounds(195, 225, 100, 60);
         frame.add(saveSlot3);
         saveSlot3.addActionListener(e -> {
+            mainMenu.playSound("sounds/button_click.wav");
             frame.dispose();
             try {
                 loadPlayerData("3");
@@ -74,10 +77,13 @@ public class loadGame {
         });
 
         // this adds a Main Menu button
-        JButton mainMenu = new JButton("Main Menu");
-        mainMenu.setBounds(170, 305, 150, 30);
-        frame.add(mainMenu);
-        mainMenu.addActionListener(e -> frame.dispose()); // this returns you to the main menu by closing the frame
+        JButton mainMenuButton = new JButton("Main Menu");
+        mainMenuButton.setBounds(170, 305, 150, 30);
+        frame.add(mainMenuButton);
+        mainMenuButton.addActionListener(e -> {
+            mainMenu.playSound("sounds/button_click.wav");
+            frame.dispose();
+        }); // this returns you to the main menu by closing the frame
 
         // this sets the default close operation
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // this closes the window without exiting the application
@@ -132,7 +138,7 @@ public class loadGame {
             playerInventory.setChicken(chicken);
 
             // this initializes the pet window with the loaded stats
-            pet petWindow = new pet(petType, petName, health, happiness, fullness, sleep, balls);
+            pet petWindow = new pet(petType, petName, health, happiness, fullness, sleep, score);
             petWindow.setVisible(true);
 
         } catch (FileNotFoundException e) {

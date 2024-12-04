@@ -85,13 +85,13 @@ public class Tutorial extends JFrame {
         frame.add(scrollPane);
 
         // this is a button that returns you to the main menu
-        JButton mainMenu = new JButton("Main Menu");
-        mainMenu.setBounds(50, 500, 150, 40); // this sets the position and size
-        mainMenu.setFont(new Font("Comic Sans MS", Font.BOLD, 16)); // this sets the font style and size
-        frame.add(mainMenu);
+        JButton mainMenuButton = new JButton("Main Menu");
+        mainMenuButton.setBounds(50, 500, 150, 40); // this sets the position and size
+        mainMenuButton.setFont(new Font("Comic Sans MS", Font.BOLD, 16)); // this sets the font style and size
+        frame.add(mainMenuButton);
 
         // this adds an action listener to the Main Menu button
-        mainMenu.addActionListener(new ActionListener() {
+        mainMenuButton.addActionListener(new ActionListener() {
             /**
              * this closes the Tutorial window when the Main Menu button is clicked.
              *
@@ -99,6 +99,7 @@ public class Tutorial extends JFrame {
              */
             @Override
             public void actionPerformed(ActionEvent e) {
+              mainMenu.playSound("sounds/button_click.wav");
                 frame.dispose(); // this closes the tutorial window
                 // Optionally, this navigates you back to the main menu
                 // mainMenu.showWindow();

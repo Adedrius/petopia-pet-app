@@ -41,8 +41,10 @@ public class playerInventory {
         JButton backToGame = new JButton("<-- Back to Game");
         backToGame.setBounds(600, 20, 140, 40); // x, y, width, height
         frame.add(backToGame);
-        backToGame.addActionListener(e ->
-        frame.dispose()); // goes back to main game from inventory
+        backToGame.addActionListener(e ->{
+        mainMenu.playSound("sounds/button_click.wav");
+        frame.dispose();
+    }); // goes back to main game from inventory
 
 
         // Page title with rounded background
@@ -71,6 +73,7 @@ public class playerInventory {
         fishButton.setContentAreaFilled(false);
         frame.add(fishButton);
         fishButton.addActionListener(e -> {
+            mainMenu.playSound("sounds/button_click.wav");
             if (getFish() > 0) {
                 setFish(getFish() - 1);
                 pet.setFullnessValue((pet.getFullnessValue() + 5)); // Add 5 to fullness
@@ -104,6 +107,7 @@ public class playerInventory {
         ballButton.setContentAreaFilled(false);
         frame.add(ballButton);
         ballButton.addActionListener(e -> {
+            mainMenu.playSound("sounds/button_click.wav");
             if (getBalls() > 0) {
                 setBalls(getBalls() - 1);
                 pet.setHappinessValue((pet.getHappinessValue() + 5)); // Add 5 to happiness
@@ -136,6 +140,7 @@ public class playerInventory {
         milkButton.setContentAreaFilled(false);
         frame.add(milkButton);
         milkButton.addActionListener(e -> {
+            mainMenu.playSound("sounds/button_click.wav");
             if (getMilk() > 0) {
                 setMilk(getMilk() - 1);
                 pet.setFullnessValue((pet.getFullnessValue() + 10)); // Add 10 to fullness
@@ -168,6 +173,7 @@ public class playerInventory {
         bearButton.setContentAreaFilled(false);
         frame.add(bearButton);
         bearButton.addActionListener(e -> {
+            mainMenu.playSound("sounds/button_click.wav");
             if (getBears() > 0) {
                 setBears(getBears() - 1);
                 pet.setHappinessValue((pet.getHappinessValue() + 10)); // Add 10 to happiness
@@ -201,6 +207,7 @@ public class playerInventory {
         treatsButton.setContentAreaFilled(false);
         frame.add(treatsButton);
         treatsButton.addActionListener(e -> {
+            mainMenu.playSound("sounds/button_click.wav");
             if (getTreats() > 0) {
                 // Decrease treats count
                 setTreats(getTreats() - 1);
@@ -239,6 +246,7 @@ public class playerInventory {
         blocksButton.setContentAreaFilled(false);
         frame.add(blocksButton);
         blocksButton.addActionListener(e -> {
+            mainMenu.playSound("sounds/button_click.wav");
             if (getBlocks() > 0) {
                 // Decrease block count
                 setBlocks(getBlocks() - 1);
@@ -278,6 +286,7 @@ public class playerInventory {
         chickenButton.setContentAreaFilled(false);
         frame.add(chickenButton);
         chickenButton.addActionListener(e -> {
+            mainMenu.playSound("sounds/button_click.wav");
             if (getChicken() > 0) {
                 setChicken(getChicken() - 1);
                 pet.setFullnessValue((pet.getFullnessValue() + 20)); // Add 20 to fullness
@@ -314,6 +323,7 @@ public class playerInventory {
         spinnerButton.setContentAreaFilled(false);
         frame.add(spinnerButton);
         spinnerButton.addActionListener(e -> {
+            mainMenu.playSound("sounds/button_click.wav");
             if (getSpinners() > 0) {
                 setSpinners(getSpinners() - 1);
                 pet.setHappinessValue((pet.getHappinessValue() + 20)); // Add 20 to happiness

@@ -81,4 +81,5 @@ public class PetTest {
     }
 
     // Add any additional tests for specific behaviors like updating inventory, score limits, etc.
+    
 }

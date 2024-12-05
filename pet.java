@@ -34,6 +34,8 @@ public class pet extends JFrame {
     public static int score = 0;
 
     private Timer timer; // this is a timer to decrease stats over time
+    private Timer timerUpdateInventory; // this is a timer to decrease stats over time
+
     public static long startTime = System.nanoTime();
 
     //this states the pet's mood 
@@ -173,7 +175,10 @@ public class pet extends JFrame {
         }
 
         // this creates a timer to decrease stats over time
+        timerUpdateInventory = new Timer(40000, e -> updateInventory());
+
         timer = new Timer(5000, e -> updateStats());
+        timerUpdateInventory.start();
         timer.start();
     }
 
@@ -190,10 +195,37 @@ public class pet extends JFrame {
         }
     }
 
+private void updateInventory(){
+int currBalls = playerInventory.getBalls();
+playerInventory.setBalls(currBalls + 1);
+
+int currFish = playerInventory.getFish();
+playerInventory.setFish(currFish + 1);
+
+int currMilk = playerInventory.getMilk();
+playerInventory.setMilk(currMilk + 1);
+
+int currBears = playerInventory.getBears();
+playerInventory.setBears(currBears + 1);
+
+int currTreats = playerInventory.getTreats();
+playerInventory.setTreats(currTreats + 1);
+
+int currBlocks = playerInventory.getBlocks();
+playerInventory.setBlocks(currBlocks + 1);
+
+int currChicken = playerInventory.getChicken();
+playerInventory.setChicken(currChicken + 1);
+
+int currSpinners = playerInventory.getSpinners();
+playerInventory.setSpinners(currSpinners + 1);
+}
+
 /**
  * This updates the pet's stats over time and adjusts the pet's state (e.g., alive, awake, happy) accordingly.
  * This method decreases health, happiness, fullness, and sleep stats at regular intervals
  * and applies penalties if certain conditions are not met.
+ * 
  */
 private void updateStats() {
     // this decreases stats over time

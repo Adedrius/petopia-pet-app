@@ -15,13 +15,21 @@ public class playerInventory {
     public static int treats = 3;
     public static int spinners = 2;
     public static int chicken = 2;
+
     private JButton backtoGame;
+
+    /**
+     * this displays the inventory window. The window contains all inventory items
+     * and their remaining quantities, as well as buttons to use the items.
+     * A "Back to Game" button is provided to return to the main game screen.
+     */
     public static void showWindow() {
 
 
         JFrame frame = new JFrame("Inventory");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 600);
+    // this is where inventory item counts
         frame.setLocationRelativeTo(null);
         
 

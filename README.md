@@ -32,7 +32,7 @@ OR
 ---
 
 ## How to use software
-Once the game is running. Navigate to the tutorial screen from the main menu to see the instructions
+Once the game is running. Navigate to the tutorial screen from the main menu to see the instructions.
 
 ---
 

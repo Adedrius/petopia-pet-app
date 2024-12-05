@@ -5,6 +5,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 
 /**
@@ -20,12 +22,14 @@ import java.io.File;
  * @since 2024-12-03
  */
 public class mainMenu extends JFrame {
+    public static long startTime;
 
     /**
      * This constructs the main menu window with buttons for various actions and developer information.
      * It sets up the layout, buttons, and event listeners.
      */
     public mainMenu() {
+        startTime = System.currentTimeMillis();
         // this sets the window title
         setTitle("Petopia - Virtual Pet Game");
 
@@ -49,6 +53,13 @@ public class mainMenu extends JFrame {
 
         // this adds an image panel to the top
         add(imagePanel, BorderLayout.NORTH);
+
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                onApplicationClose(getStartTIme());
+            }
+        });
 
         // this creates a panel for the menu buttons
         JPanel buttonPanel = new JPanel(new GridLayout(5, 1, 10, 10));
@@ -172,6 +183,15 @@ public class mainMenu extends JFrame {
      ex.printStackTrace( );
    }
  }    
+
+ public static void onApplicationClose(long startTime){
+    long endTime = System.currentTimeMillis();
+        System.out.print((endTime - startTime) / 1000);
+        
+ }
+ public static long getStartTIme(){
+    return startTime;
+ }
 
     /**
      * This is the main method that serves as the 'entry point' for the application.

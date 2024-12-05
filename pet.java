@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import javax.imageio.ImageIO;
@@ -85,6 +87,12 @@ public class pet extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                mainMenu.onApplicationClose(mainMenu.getStartTIme());
+            }
+        });
 
         // this loads images
         loadImages();
@@ -597,5 +605,9 @@ public void setScore(int newScore) {
     public static void main(String[] args) {
         pet pet = new pet("cat", "Fluffy", 100, 100, 100, 100, 0);
         pet.setVisible(true);
+    }
+
+    public Object isAlive() {
+        return isAlive;
     }
 }

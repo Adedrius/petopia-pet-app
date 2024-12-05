@@ -110,6 +110,7 @@ public class childLimitations {
         });
 
         frame.setVisible(true); // this displays the frame
+        
     }
 
     /**

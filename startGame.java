@@ -118,6 +118,12 @@ public class startGame extends JFrame {
         });
 
         frame.setVisible(true);
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                mainMenu.onApplicationClose(mainMenu.getStartTIme());
+            }
+        });
     }
 
     /**

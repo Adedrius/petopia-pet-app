@@ -8,6 +8,7 @@
  * @author group 34
  * @version 1.0
  * @since 2024-12-04
+ * */
 public class setPetStats extends pet {
 
     /**
